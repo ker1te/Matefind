@@ -1,0 +1,15 @@
+$background-main: #bbc7e9;
+
+.header-toolbar {
+
+  background: $background-main;
+  h1 {
+    margin: 10px 5px;
+    font-size: 26px;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 17px;
+  }
+}
