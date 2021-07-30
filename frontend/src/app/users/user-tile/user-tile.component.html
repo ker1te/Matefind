@@ -1,0 +1,14 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title class="user-card-title">
+        <img height="80px" src={{user.avatar}} alt={{user.name}}>
+        <h3>{{ user.name }}</h3>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="user-game-list">{{ userGames }}</p>
+      <p>{{ user.description }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
