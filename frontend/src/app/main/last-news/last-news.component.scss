@@ -1,0 +1,30 @@
+.container {
+
+  .last-news-list {
+    height: 100px;
+
+    .news-tile {
+      border-radius: 5px;
+    }
+
+    .news-title {
+      width: 100%;
+    }
+    .news-views {
+      display: flex;
+      flex-direction: row;
+      span {
+        font-size: 13px;
+        margin-right: 5px;
+      }
+      font-size: 17px;
+    }
+
+    span {
+      line-height: 0.9;
+      padding: 0;
+      margin: 0;
+      font-size: 20px;
+    }
+  }
+}

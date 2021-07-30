@@ -15,3 +15,11 @@ export class Game {
   id: number;
   name: string;
 }
+
+export class News {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  views: number;
+}

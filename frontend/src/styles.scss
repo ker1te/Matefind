@@ -5,6 +5,25 @@ html, body { height: 100%; }
 body { margin: 0; }
 * { font-family: 'Teko', sans-serif; }
 
+.highlight {
+  background-color: #00000071;
+  box-shadow: 0 0 3px #00000071;
+  border-radius: 5px;
+  z-index: 1;
+  transition-duration: 150ms;
+  transform: scale(1.01);
+  cursor: pointer;
+}
+
 .flex-spacer {
   flex: 1 1 auto;
+}
+
+.copy-block {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }

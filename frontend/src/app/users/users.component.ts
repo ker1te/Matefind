@@ -20,5 +20,8 @@ export class UsersComponent implements OnInit {
     console.log(this.users)
   }
   
+  onUserClick(userId: number) {
+    console.log(userId);
+  }
 
 }

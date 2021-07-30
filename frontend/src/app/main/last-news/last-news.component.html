@@ -1,0 +1,11 @@
+<div class="container">
+  <mat-grid-list cols="4" rowHeight="2:1" class="last-news-list">
+    <mat-grid-tile *ngFor="let news of newsList" class="news-tile copy-block" appHighlight>
+      <img height="100%" src={{news.image}} alt={{news.title}}>
+      <mat-grid-tile-footer>
+        <span class="news-title">{{ news.title }}</span>
+        <span class="news-views"><span class="fa fa-eye fa-xs"></span>{{ news.views }}</span>
+      </mat-grid-tile-footer>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

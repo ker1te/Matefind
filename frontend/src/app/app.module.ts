@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { ControlComponent } from './control/control.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,6 +16,9 @@ import { MainComponent } from './main/main.component';
 import { UsersComponent } from './users/users.component';
 import { UserTileComponent } from './users/user-tile/user-tile.component';
 import { UserService } from './services/user.service';
+import { HighlightDirective } from './directives/highlight.directive';
+import { LastNewsComponent } from './main/last-news/last-news.component';
+import { NewsService } from './services/news.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,9 @@ import { UserService } from './services/user.service';
     ControlComponent,
     MainComponent,
     UsersComponent,
-    UserTileComponent
+    UserTileComponent,
+    HighlightDirective,
+    LastNewsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,10 +38,12 @@ import { UserService } from './services/user.service';
     MatToolbarModule,
     MatButtonModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatGridListModule
   ],
   providers: [
-    UserService
+    UserService,
+    NewsService
   ],
   bootstrap: [AppComponent]
 })

@@ -15,5 +15,10 @@ $hover-color: #ececec;
     width: 100%;
     text-align: start;
     font-size: 23px;
+
+    span {
+      font-size: 13px;
+      margin-right: 6px;
+    }
   }
 }
