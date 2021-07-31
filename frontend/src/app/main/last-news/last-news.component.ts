@@ -18,6 +18,5 @@ export class LastNewsComponent implements OnInit {
   ngOnInit(): void {
     this.newsList = this.newsService.getLastNews();
   }
-  
 
 }

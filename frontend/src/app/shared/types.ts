@@ -19,7 +19,15 @@ export class Game {
 export class News {
   id: number;
   title: string;
+  //subTitle: string; //todo: Subtitle adds to the news by user
   description: string;
   image: string;
   views: number;
+}
+
+export class Publication {
+  id: number;
+  titile: string;
+  description: string;
+  games: Game[];
 }
