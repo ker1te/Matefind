@@ -1,16 +1,21 @@
 import { Injectable } from '@angular/core';
 import { User } from '../shared/types';
 import { USERLIST } from '../shared/userList';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { serverUrl } from '../shared/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
-  getUsers(): User[] {
-    return USERLIST;
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(serverUrl + 'users');
   }
 
   getUserById(id: number): User {

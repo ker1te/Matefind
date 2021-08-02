@@ -15,7 +15,7 @@ import {config, rootDir} from "./config";
   httpPort: process.env.PORT || 8083,
   httpsPort: false, // CHANGE
   mount: {
-    "/rest": [
+    "/api": [
       `${rootDir}/controllers/**/*.ts`
     ]
   },

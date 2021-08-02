@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { flyInOut } from '../animations/animations';
 import { UserService } from '../services/user.service';
 import { User } from '../shared/types';
 
@@ -17,7 +16,8 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.users = this.userService.getUsers();
+    this.userService.getUsers()
+      .subscribe(users => this.users = users);
   }
   
   onUserClick(userId: number) {
