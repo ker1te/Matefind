@@ -1,8 +1,14 @@
 <div class="container">
-  <h1>Sign In</h1>
-  <form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">
+  <h1>Registration</h1>
+  <form novalidate #regForm="ngForm" (ngSubmit)="onSubmit()">
     <mat-dialog-content>
     <p>
+      <mat-form-field>
+        <input matInput placeholder="Email" type="email"
+          [(ngModel)]="user.email" name="email" 
+          #email="ngModel" required/>
+          <!-- <mat-error *ngIf="email.errors?.required">Email is required</mat-error> -->
+      </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Username" type="text"
           [(ngModel)]="user.username" name="username" 
@@ -15,13 +21,17 @@
           #password="ngModel" required/>
           <!-- <mat-error *ngIf="password.errors?.required">Password is required</mat-error> -->
       </mat-form-field>
-      <mat-checkbox [color]="'primary'" [(ngModel)]="user.remember" name="remember">Remember me</mat-checkbox><br>
+      <mat-form-field>
+        <input matInput placeholder="Repeat password" type="password"
+          [(ngModel)]="user.repPassword" name="password"
+          #password="ngModel" required/>
+          <!-- <mat-error *ngIf="password.errors?.required">Password is required</mat-error> -->
+      </mat-form-field>
     </p>
   </mat-dialog-content>
   <mat-dialog-actions>
     <span class="flex-spacer"></span>
-    <button mat-button (click)="onRegistrationClick()">Registration</button>
-    <button mat-button type="submit" [disabled]="loginForm.form.invalid" class="login-button">Submit</button>
+    <button mat-button type="submit" [disabled]="regForm.form.invalid" class="login-button">Submit</button>
   </mat-dialog-actions>
   </form>
 </div>

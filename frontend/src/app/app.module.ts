@@ -27,6 +27,7 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { LastNewsComponent } from './main/last-news/last-news.component';
 import { NewsService } from './services/news.service';
 import { SigninComponent } from './header/signin/signin.component';
+import { RegistrationComponent } from './header/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SigninComponent } from './header/signin/signin.component';
     UserTileComponent,
     HighlightDirective,
     LastNewsComponent,
-    SigninComponent
+    SigninComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

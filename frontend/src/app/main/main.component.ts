@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  greetingNote: string;
+
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
+    this.greetingNote = this.authService.currentUserValue.name 
+      ? 'Have a nice day, ' + this.authService.currentUserValue.name + '!'
+      : 'Hello user! Is this your first time with us?'
   }
 
 }

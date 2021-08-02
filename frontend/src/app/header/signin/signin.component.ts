@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-signin',
@@ -9,13 +10,18 @@ export class SigninComponent implements OnInit {
 
   user = {username: "", password: "", remember: false}
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<SigninComponent>
+  ) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(): void {
-    
+  }
+
+  onRegistrationClick(): void {
+    this.dialogRef.close({ regClick: true })
   }
 
 }
