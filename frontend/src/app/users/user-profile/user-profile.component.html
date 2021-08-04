@@ -1,1 +1,16 @@
-<p>user-profile works!</p>
+<div class="container">
+  <div class="profile-block" *ngIf="user">
+    <div class="profile-header">
+      <img height="180px" src={{user.avatar}} alt={{user.name}}>
+      <h1>{{ user.name }}</h1>
+    </div>
+    <div class="profile-body">
+      <div class="desc-block">
+        <p *ngIf="!itsMe()" class="desc-text">{{ user.description }}</p>
+        <textarea *ngIf="itsMe()" rows="9" cols="150"
+                  class="desc-textarea" placeholder="Description"></textarea>
+      </div>
+    </div>
+  </div>
+  <mat-spinner *ngIf="!user" class="spinner" diameter="70"></mat-spinner>
+</div>

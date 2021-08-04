@@ -3,6 +3,7 @@ import { UserService } from '../services/user.service';
 import { User } from '../shared/types';
 import {interval} from "rxjs";
 import {timeInterval} from "rxjs/operators";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-users',
@@ -14,7 +15,8 @@ export class UsersComponent implements OnInit {
   users: User[] = [];
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -23,7 +25,7 @@ export class UsersComponent implements OnInit {
   }
 
   onUserClick(userId: number) {
-    console.log(userId);
+    this.router.navigate(['users', userId])
   }
 
 }

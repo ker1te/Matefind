@@ -16,6 +16,14 @@ export class UsersController {
     return UserList;
   }
 
+  @Get("/:id")
+  getById(
+      @PathParams('id') id:number
+  ){
+    let user = UserList.filter(u => u.id == id)[0];
+    return user;
+  }
+
   @Post("/")
   post(
     @BodyParams('data') user: any

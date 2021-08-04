@@ -18,8 +18,8 @@ export class UserService {
     return this.http.get<User[]>(serverUrl + 'users');
   }
 
-  getUserById(id: number): User {
-    return USERLIST.filter(u => u.id == id)[0];
+  getUserById(id: number): Observable<User> {
+    return this.http.get<User>(serverUrl + 'users/' + id);
   }
 
 }

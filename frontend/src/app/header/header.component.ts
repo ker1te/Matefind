@@ -26,8 +26,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onUserClick(): void {
-    const url = 'users/' + this.authService.currentUserValue.id;
-    this.router.navigate([url]);
+    this.router.navigate(['users', this.authService.currentUserValue.id]);
   }
 
   private openSignInDialog(): void {

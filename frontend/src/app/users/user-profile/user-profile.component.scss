@@ -1,0 +1,33 @@
+.container {
+  .profile-block {
+
+    .profile-header {
+
+      img {
+        border-radius: 100%;
+      }
+      h1 {
+        font-size: 40px;
+      }
+    }
+
+    .profile-body {
+      h3 {
+        font-size: 27px;
+      }
+      .desc-text {
+        font-size: 23px;
+        width: 60%;
+      }
+      .desc-textarea {
+        border: 1px solid #D4D4D4;
+        border-radius: 5px;
+        font-size: 20px;
+      }
+    }
+  }
+
+  mat-spinner {
+    margin: 100px auto;
+  }
+}
