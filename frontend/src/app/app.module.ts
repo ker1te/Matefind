@@ -31,6 +31,7 @@ import { LastNewsComponent } from './main/last-news/last-news.component';
 import { NewsService } from './services/news.service';
 import { SigninComponent } from './header/signin/signin.component';
 import { RegistrationComponent } from './header/registration/registration.component';
+import { UserProfileComponent } from './users/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { RegistrationComponent } from './header/registration/registration.compon
     HighlightDirective,
     LastNewsComponent,
     SigninComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

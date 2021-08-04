@@ -3,6 +3,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { RegistrationComponent } from './registration/registration.component';
 import { SigninComponent } from './signin/signin.component';
 import {AuthService} from "../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    public authService: AuthService
+    public authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -21,6 +23,11 @@ export class HeaderComponent implements OnInit {
 
   onSignInClick(): void {
     this.openSignInDialog();
+  }
+
+  onUserClick(): void {
+    const url = 'users/' + this.authService.currentUserValue.id;
+    this.router.navigate([url]);
   }
 
   private openSignInDialog(): void {

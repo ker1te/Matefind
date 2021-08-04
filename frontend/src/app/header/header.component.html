@@ -3,7 +3,7 @@
   <!-- <h3 class="quote-of-day">Отлетаешь очередняра</h3> -->
   <span class="flex-spacer"></span>
   <a mat-button *ngIf="!authService.currentUserValue" (click)="onSignInClick()"><!-- <span class="fa fa-user fa-sm"></span>  -->Sign In</a>
-  <button mat-button *ngIf="authService.currentUserValue">
+  <button mat-button *ngIf="authService.currentUserValue" (click)="onUserClick()">
     <div class="user-block">
       <img height="45px" src={{authService.currentUserValue.avatar}} alt={{authService.currentUserValue.name}}>
       <h2>{{ authService.currentUserValue.name }}</h2>
