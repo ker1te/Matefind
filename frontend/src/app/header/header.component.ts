@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
   private openRegistrationDialog(): void {
     const dialogRef = this.dialog.open(RegistrationComponent, {
       width: '450px',
-      height: '550px'
+      height: '450px'
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -1,4 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { AuthService } from 'src/app/services/auth.service';
+import { Md5 } from 'ts-md5/dist/md5';
+
+type formErrorsType = {
+  [key: string]: string;
+}
+
+type validationMessagesType = {
+  [key: string]: object;
+}
 
 @Component({
   selector: 'app-registration',
@@ -7,13 +19,88 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationComponent implements OnInit {
 
-  user = {username: "", password: "", repPassword: "", email: ""}
+  regForm: FormGroup;
+  user: any;
+  @ViewChild('fform') regFormDirective:any;
 
-  constructor() { }
+  formErrors: formErrorsType = {
+    'username': '',
+    'password' : '',
+    /* 'repPassword': '', */
+    'email': ''
+  }
+
+  validationMessages: validationMessagesType = {
+    'username': {
+      'required': 'Name is required.',
+      'minlength': 'Name must be at least 2 characters long'
+    },
+    'password': {
+      'required': 'Password is required'
+    },
+    /* 'repPassword': {
+      'required': 'Repeated password is required.'
+    }, */
+    'email': {
+      'required': 'Email is required.'
+    }
+  };
+
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    public dialogRef: MatDialogRef<RegistrationComponent>
+  ) {
+    this.createForm();
+  }
 
   ngOnInit(): void {
   }
 
-  onSubmit(){}
+  onSubmit() {
+    this.user = this.regForm.value;
+    const md5 = new Md5();
+    this.user.password = md5.appendStr(this.user.password).end();
+    this.authService.register(this.user)
+      .subscribe(user => { if(user){ this.dialogRef.close() } })
+
+    this.regFormDirective.resetForm();
+    this.regForm.reset({
+      username: '',
+      password: '',
+      email: ''
+    });
+  }
+
+  private createForm = () => {
+    this.regForm = this.fb.group({
+      username: ['', [Validators.required, Validators.minLength(2)]],
+      password: ['', [Validators.required]],
+      /* repPassword: ['', [Validators.required, Validators.minLength(2)]], */
+      email: ['', [Validators.required]]
+    })
+
+    this.regForm.valueChanges
+      .subscribe(data => this.onValueChanged(data))
+  }
+
+  private onValueChanged = (data?: any) => {
+    if(!this.regForm){ return; }
+    const form = this.regForm;
+    for(const field in this.formErrors){
+      if(this.formErrors.hasOwnProperty(field)){
+        this.formErrors[field] = '';
+        const control = form.get(field);
+        if(control && control.dirty && !control.valid){
+          const messages: any = this.validationMessages[field];
+          for(const key in control.errors){
+            if(control.errors.hasOwnProperty(key)){
+              this.formErrors[field] += messages[key] + ' ';
+            }
+          }
+        }
+      }
+    }
+  }
 
 }

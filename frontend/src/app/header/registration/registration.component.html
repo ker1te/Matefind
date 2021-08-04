@@ -1,37 +1,29 @@
 <div class="container">
   <h1>Registration</h1>
-  <form novalidate #regForm="ngForm" (ngSubmit)="onSubmit()">
+  <form novalidate [formGroup]="regForm" #fform="ngForm" (ngSubmit)="onSubmit()">
     <mat-dialog-content>
     <p>
       <mat-form-field>
-        <input matInput placeholder="Email" type="email"
-          [(ngModel)]="user.email" name="email" 
-          #email="ngModel" required/>
-          <!-- <mat-error *ngIf="email.errors?.required">Email is required</mat-error> -->
+        <input matInput placeholder="Email" type="email" name="email" formControlName="email" required/>
+        <mat-error *ngIf="formErrors.email">{{ formErrors.email }}</mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Username" type="text"
-          [(ngModel)]="user.username" name="username" 
-          #username="ngModel" required/>
-          <!-- <mat-error *ngIf="username.errors?.required">Username is required</mat-error> -->
+        <input matInput placeholder="Username" type="text" name="username" formControlName="username" required/>
+        <mat-error *ngIf="formErrors.username">{{ formErrors.username }}</mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Password" type="password"
-          [(ngModel)]="user.password" name="password"
-          #password="ngModel" required/>
-          <!-- <mat-error *ngIf="password.errors?.required">Password is required</mat-error> -->
+        <input matInput placeholder="Password" type="password" name="password" formControlName="password" required/>
+        <mat-error *ngIf="formErrors.password">{{ formErrors.password }}</mat-error>
       </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Repeat password" type="password"
-          [(ngModel)]="user.repPassword" name="password"
-          #password="ngModel" required/>
-          <!-- <mat-error *ngIf="password.errors?.required">Password is required</mat-error> -->
-      </mat-form-field>
+      <!-- <mat-form-field>
+        <input matInput placeholder="Repeat password" type="password" name="repPassword" formControlName="repPassword" required/>
+        <mat-error *ngIf="formErrors.repPassword">{{ formErrors.repPassword }}</mat-error>
+      </mat-form-field> -->
     </p>
   </mat-dialog-content>
   <mat-dialog-actions>
     <span class="flex-spacer"></span>
-    <button mat-button type="submit" [disabled]="regForm.form.invalid" class="login-button">Submit</button>
+    <button mat-button type="submit" [disabled]="regForm.invalid" class="login-button">Submit</button>
   </mat-dialog-actions>
   </form>
 </div>
