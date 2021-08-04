@@ -1,0 +1,19 @@
+.container {
+  display: block;
+  width: 350px;
+  margin: 10px 10px 10px 0;
+
+
+  .game-card-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    h3 {
+      font-size: 30px;
+    }
+    img {
+      border-radius: 100%;
+      margin-right: 20px;
+    }
+  }
+}

@@ -36,7 +36,8 @@ export class RegistrationComponent implements OnInit {
       'minlength': 'Name must be at least 2 characters long'
     },
     'password': {
-      'required': 'Password is required'
+      'required': 'Password is required',
+      'minlength': 'Password must be at least 5 characters long'
     },
     /* 'repPassword': {
       'required': 'Repeated password is required.'
@@ -81,8 +82,8 @@ export class RegistrationComponent implements OnInit {
 
   private createForm = () => {
     this.regForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(2)]],
-      password: ['', [Validators.required]],
+      username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
+      password: ['', [Validators.required, Validators.minLength(5)]],
       /* repPassword: ['', [Validators.required, Validators.minLength(2)]], */
       email: ['', [Validators.required]]
     })

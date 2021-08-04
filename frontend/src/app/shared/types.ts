@@ -14,6 +14,8 @@ export class User {
 export class Game {
   id: number;
   name: string;
+  description: string;
+  avatar: string;
 }
 
 export class News {
