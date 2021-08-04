@@ -62,14 +62,14 @@ export class RegistrationComponent implements OnInit {
     const md5 = new Md5();
     this.user.password = md5.appendStr(this.user.password).end();
     this.authService.register(this.user)
-      .subscribe(user => { if(user){ this.dialogRef.close() } })
+      .subscribe(user => { if(user){ this.dialogRef.close(user) } })
 
-    this.regFormDirective.resetForm();
+    /* this.regFormDirective.resetForm();
     this.regForm.reset({
       username: '',
       password: '',
       email: ''
-    });
+    }); */
   }
 
   private createForm = () => {

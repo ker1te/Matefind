@@ -1,3 +1,4 @@
 <div class="container">
   <app-user-tile *ngFor="let user of users" [user]="user" (click)="onUserClick(user.id)"></app-user-tile>
+  <mat-spinner *ngIf="!users" class="spinner" diameter="70"></mat-spinner>
 </div>

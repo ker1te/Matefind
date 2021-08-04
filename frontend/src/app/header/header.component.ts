@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { RegistrationComponent } from './registration/registration.component';
 import { SigninComponent } from './signin/signin.component';
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,8 @@ import { SigninComponent } from './signin/signin.component';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -41,9 +43,7 @@ export class HeaderComponent implements OnInit {
       height: '450px'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+    dialogRef.afterClosed().subscribe(result => {  });
   }
 
 }

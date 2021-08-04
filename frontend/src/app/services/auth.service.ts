@@ -15,20 +15,22 @@ export class AuthService {
   constructor(
     private http: HttpClient
   ) {
-    this.currentUserSubject = new User();
+
   }
 
   public get currentUserValue(): User {
     return this.currentUserSubject;
   }
 
-  signin(username: string, pasword: string) {
-    //todo: SignIn function
+  signin(userData: any): Observable<User> {
+    const body = { data: { ...userData } }
+    return this.http.post<User>(serverUrl + 'users/signIn', body)
+      .pipe(map(user => this.currentUserSubject = user))
   }
 
-  register(user: any): Observable<User> {
-    const body = { data: { ...user } }
-    return  this.http.post<User>(serverUrl + 'users',  body)
+  register(userData: any): Observable<User> {
+    const body = { data: { ...userData } }
+    return this.http.post<User>(serverUrl + 'users',  body)
       .pipe(map(user => this.currentUserSubject = user))
   }
 

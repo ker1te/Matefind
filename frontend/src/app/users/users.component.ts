@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../shared/types';
+import {interval} from "rxjs";
+import {timeInterval} from "rxjs/operators";
 
 @Component({
   selector: 'app-users',
@@ -9,7 +11,7 @@ import { User } from '../shared/types';
 })
 export class UsersComponent implements OnInit {
 
-  users: User[]
+  users: User[] = [];
 
   constructor(
     private userService: UserService
@@ -19,7 +21,7 @@ export class UsersComponent implements OnInit {
     this.userService.getUsers()
       .subscribe(users => this.users = users);
   }
-  
+
   onUserClick(userId: number) {
     console.log(userId);
   }
