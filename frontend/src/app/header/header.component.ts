@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result.regClick){ this.openRegistrationDialog() }
+      if(result) { if(result.regClick){ this.openRegistrationDialog() }}
     });
   }
 

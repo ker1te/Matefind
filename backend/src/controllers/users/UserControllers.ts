@@ -1,5 +1,4 @@
 import {BodyParams, Controller, Get, PathParams, Post} from "@tsed/common";
-import {User} from "../../../../frontend/src/app/shared/types";
 
 const UserList = [
   { id: 0, name: 'keritea', avatar: '../assets/cat.jpg', games: [ ], email: '', passwordHash: '', description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.' },

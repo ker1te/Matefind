@@ -32,6 +32,11 @@ import { NewsService } from './services/news.service';
 import { SigninComponent } from './header/signin/signin.component';
 import { RegistrationComponent } from './header/registration/registration.component';
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
+import { GamesComponent } from './games/games.component';
+import { TeamsComponent } from './teams/teams.component';
+import { PublicationsComponent } from './publications/publications.component';
+import { MessagesComponent } from './messages/messages.component';
+import { GameTileComponent } from './games/game-tile/game-tile.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +50,12 @@ import { UserProfileComponent } from './users/user-profile/user-profile.componen
     LastNewsComponent,
     SigninComponent,
     RegistrationComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    GamesComponent,
+    TeamsComponent,
+    PublicationsComponent,
+    MessagesComponent,
+    GameTileComponent
   ],
   imports: [
     BrowserModule,

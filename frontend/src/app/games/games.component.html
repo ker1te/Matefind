@@ -1,0 +1,4 @@
+<div class="container">
+  <app-game-tile *ngFor="let game of games" [game]="game" (click)="onGameClick(game.id)"></app-game-tile>
+  <mat-spinner *ngIf="!games" class="spinner" diameter="70"></mat-spinner>
+</div>
