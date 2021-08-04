@@ -19,6 +19,8 @@ import { MatListModule } from '@angular/material/list';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatDividerModule} from '@angular/material/divider';
 
 import { MainComponent } from './main/main.component';
 import { UsersComponent } from './users/users.component';
@@ -59,7 +61,9 @@ import { RegistrationComponent } from './header/registration/registration.compon
     ReactiveFormsModule,
     MatInputModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatMenuModule,
+    MatDividerModule
   ],
   providers: [
     UserService,

@@ -1,9 +1,12 @@
-<mat-toolbar class="header-toolbar">
+<mat-toolbar class="header-toolbar copy-block">
   <a href=""><h1>MATEFIND</h1></a>
   <!-- <h3 class="quote-of-day">Отлетаешь очередняра</h3> -->
   <span class="flex-spacer"></span>
   <a mat-button *ngIf="!authService.currentUserValue" (click)="onSignInClick()"><!-- <span class="fa fa-user fa-sm"></span>  -->Sign In</a>
-  <div *ngIf="authService.currentUserValue" class="user-block">
-    <span>{{ authService.currentUserValue.name }}</span>
-  </div>
+  <button mat-button *ngIf="authService.currentUserValue">
+    <div class="user-block">
+      <img height="45px" src={{authService.currentUserValue.avatar}} alt={{authService.currentUserValue.name}}>
+      <h2>{{ authService.currentUserValue.name }}</h2>
+    </div>
+  </button>
 </mat-toolbar>

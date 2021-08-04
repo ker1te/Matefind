@@ -1,7 +1,7 @@
 $background-main: #bbc7e9;
 
 .header-toolbar {
-
+  font-family: 'Teko', sans-serif;
   background: $background-main;
   h1 {
     margin: 10px 5px;
@@ -18,4 +18,24 @@ $background-main: #bbc7e9;
     margin-left: 50px;
     font-style: italic;
   }
+  .user-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 200px;
+
+    h2 {
+      font-size: 30px;
+      font-family: 'Teko', sans-serif;
+    }
+    img {
+      border-radius: 100%;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+  }
+  button {
+    height: 100%!important;
+  }
+
 }
