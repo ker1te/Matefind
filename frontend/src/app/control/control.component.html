@@ -6,5 +6,7 @@
   <a mat-button routerLink='/publications'>Publications</a>
   <a mat-button routerLink='/teams'>Teams</a>
   <br>
-  <a mat-button routerLink='/messages'>Messages</a>
+  <div *ngIf="authService.currentUserValue">
+    <a mat-button routerLink='/messages'>Messages</a>
+  </div>
 </mat-list>
