@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Game} from "../../shared/types";
+import {Game} from "../../core/shared/types";
 
 @Component({
   selector: 'app-game-tile',

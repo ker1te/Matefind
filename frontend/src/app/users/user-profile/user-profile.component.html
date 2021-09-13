@@ -1,14 +1,39 @@
 <div class="container">
   <div class="profile-block" *ngIf="user">
     <div class="profile-header">
-      <img height="180px" src={{user.avatar}} alt={{user.name}}>
-      <h1>{{ user.name }}</h1>
+      <img src={{user.avatar}} alt={{user.name}}>
+      <div class="user-info">
+        <h1>{{ user.name }}</h1>
+        <div class="games-block">
+          <h2>Games: </h2>
+          <span *ngFor="let game of user.games" class="game-item">{{ game.name }}</span>
+          <span *ngIf="!isItMe()">None</span>
+          <div *ngIf="isItMe() && games.length" class="games-autocomplete">
+            <input type="text"
+                   placeholder="Add"
+                   aria-label="Game"
+                   matInput
+                   [formControl]="myControl"
+                   [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let game of filteredGames | async" [value]="game.name" (click)="onAutocompleteGameClick(game.id)">
+                {{ game.name }}
+              </mat-option>
+            </mat-autocomplete>
+          </div>
+        </div>
+        <!-- <div class="link-block">
+          <a *ngFor="let link of user.links" [ngClass]="link.resource.toLowerCase()" mat-stroked-button href="{{ link.link }}}" target="_blank">
+            <span>{{ link.resource }}</span>
+          </a>
+          <button mat-stroked-button *ngIf="isItMe()" (click)="onAddLinkClick()">Add</button>
+        </div> -->
+      </div>
     </div>
     <div class="profile-body">
       <div class="desc-block">
-        <p *ngIf="!itsMe()" class="desc-text">{{ user.description }}</p>
-        <textarea *ngIf="itsMe()" rows="9" cols="150"
-                  class="desc-textarea" placeholder="Description"></textarea>
+        <p *ngIf="!isItMe()" class="desc-text">{{ user.description }}</p>
+        <textarea *ngIf="isItMe()" rows="9" cols="150" class="desc-textarea" placeholder="Description"></textarea>
       </div>
     </div>
   </div>

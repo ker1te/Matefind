@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { NewsList } from '../shared/newsList';
-import { News } from '../shared/types';
+import { NewsList } from '../core/shared/newsList';
+import { News } from '../core/shared/types';
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
-import { User } from '../shared/types';
-import {Router} from "@angular/router";
+import { User } from '../core/shared/types';
+import { MatDialog } from "@angular/material/dialog";
+import {UserProfileModalComponent} from "./user-profile-modal/user-profile-modal.component";
 
 @Component({
   selector: 'app-users',
@@ -14,7 +15,7 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private router: Router
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -23,7 +24,17 @@ export class UsersComponent implements OnInit {
   }
 
   onUserClick(userId: number) {
-    this.router.navigate(['users', userId])
+    this.openUserProfileDialog({ userId })
+  }
+
+  private openUserProfileDialog(data: any): void {
+    const dialogRef = this.dialog.open(UserProfileModalComponent, {
+      width: '70%',
+      height: '80%',
+      data
+    });
+
+    dialogRef.afterClosed().subscribe(result => {});
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from 'src/app/shared/types';
+import { User } from 'src/app/core/shared/types';
 
 @Component({
   selector: 'app-user-tile',

@@ -1,24 +1,25 @@
-export class Section {
+export interface Section {
   id: number;
   name: string;
 }
 
-export class User {
+export interface User {
   id: number;
   name: string;
   avatar: string;
   games: Game[];
   description: string;
+  links: SocialLink[];
 }
 
-export class Game {
+export interface Game {
   id: number;
   name: string;
   description: string;
   avatar: string;
 }
 
-export class News {
+export interface News {
   id: number;
   title: string;
   //subTitle: string; //todo: Subtitle adds to the news by user
@@ -27,9 +28,14 @@ export class News {
   views: number;
 }
 
-export class Publication {
+export interface Publication {
   id: number;
   titile: string;
   description: string;
   games: Game[];
+}
+
+export interface SocialLink {
+  link: string;
+  resource: string;
 }

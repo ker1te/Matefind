@@ -16,39 +16,10 @@
           margin: 0;
           font-size: 40px;
         }
-        .games-block {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          h2 {
-            margin: 0;
-          }
-          span {
-            font-size: 1.4em;
-            margin-left: 15px;
-          }
-          .game-item {
-            padding: 5px;
-            border: 1px solid grey;
-            border-radius: 10px;
-          }
-          .games-autocomplete {
-            margin-left: 10px;
-            input {
-              font-size: 1.4em;
-            }
-            option {
-              font-size: 1.4em;
-            }
-          }
-        }
         .link-block {
           display: flex;
           flex-direction: row;
           padding: 5px;
-          button {
-            font-size: 1.3em;
-          }
           a {
             font-size: 1.3em;
             color: white;
@@ -62,7 +33,6 @@
     }
 
     .profile-body {
-      padding: 10px 0px;
       h3 {
         font-size: 27px;
       }

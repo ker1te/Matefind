@@ -18,25 +18,27 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { MainComponent } from './main/main.component';
 import { UsersComponent } from './users/users.component';
 import { UserTileComponent } from './users/user-tile/user-tile.component';
 import { UserService } from './services/user.service';
-import { HighlightDirective } from './directives/highlight.directive';
+import { HighlightDirective } from './core/directives/highlight.directive';
 import { LastNewsComponent } from './main/last-news/last-news.component';
 import { NewsService } from './services/news.service';
 import { SigninComponent } from './header/signin/signin.component';
 import { RegistrationComponent } from './header/registration/registration.component';
-import { UserProfileComponent } from './users/user-profile/user-profile.component';
+import { UserProfileModalComponent } from './users/user-profile-modal/user-profile-modal.component';
 import { GamesComponent } from './games/games.component';
 import { TeamsComponent } from './teams/teams.component';
 import { PublicationsComponent } from './publications/publications.component';
 import { MessagesComponent } from './messages/messages.component';
 import { GameTileComponent } from './games/game-tile/game-tile.component';
+import { UserProfileComponent } from './users/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -50,12 +52,13 @@ import { GameTileComponent } from './games/game-tile/game-tile.component';
     LastNewsComponent,
     SigninComponent,
     RegistrationComponent,
-    UserProfileComponent,
+    UserProfileModalComponent,
     GamesComponent,
     TeamsComponent,
     PublicationsComponent,
     MessagesComponent,
-    GameTileComponent
+    GameTileComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,8 @@ import { GameTileComponent } from './games/game-tile/game-tile.component';
     HttpClientModule,
     MatProgressSpinnerModule,
     MatMenuModule,
-    MatDividerModule
+    MatDividerModule,
+    MatAutocompleteModule
   ],
   providers: [
     UserService,

@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="profile-block" *ngIf="user">
+    <div class="profile-header">
+      <img src={{user.avatar}} alt={{user.name}}>
+      <div class="user-info">
+        <h1>{{ user.name }}</h1>
+        <!-- <div class="link-block">
+          <a *ngFor="let link of links" [ngClass]="link.resource.toLowerCase()" mat-stroked-button href="{{ link.link }}}" target="_blank">
+            <span>{{ link.resource }}</span>
+          </a>
+        </div> -->
+      </div>
+    </div>
+    <div class="profile-body">
+      <div class="desc-block">
+        <p class="desc-text">{{ user.description }}</p>
+      </div>
+    </div>
+  </div>
+  <mat-spinner *ngIf="!user" class="spinner" diameter="70"></mat-spinner>
+</div>
