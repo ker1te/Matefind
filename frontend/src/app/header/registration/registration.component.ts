@@ -24,7 +24,7 @@ export class RegistrationComponent implements OnInit {
   @ViewChild('fform') regFormDirective:any;
 
   formErrors: formErrorsType = {
-    'username': '',
+    'name': '',
     'password' : '',
     /* 'repPassword': '', */
     'email': ''
@@ -61,7 +61,9 @@ export class RegistrationComponent implements OnInit {
   onSubmit() {
     this.user = this.regForm.value;
     const md5 = new Md5();
-    this.user.password = md5.appendStr(this.user.password).end();
+    this.user.passwordHash = md5.appendStr(this.user.password).end();
+    this.user.avatar = 'cat.jpg';
+    this.user.description = '';
     this.authService.register(this.user)
       .subscribe(user => {
         if(user){
@@ -74,7 +76,7 @@ export class RegistrationComponent implements OnInit {
   private resetForm(): void {
     this.regFormDirective.resetForm();
     this.regForm.reset({
-      username: '',
+      name: '',
       password: '',
       email: ''
     });
@@ -82,7 +84,7 @@ export class RegistrationComponent implements OnInit {
 
   private createForm = () => {
     this.regForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
+      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
       password: ['', [Validators.required, Validators.minLength(5)]],
       /* repPassword: ['', [Validators.required, Validators.minLength(2)]], */
       email: ['', [Validators.required]]

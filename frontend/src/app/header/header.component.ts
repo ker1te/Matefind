@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RegistrationComponent } from './registration/registration.component';
 import { SigninComponent } from './signin/signin.component';
-import {AuthService} from "../services/auth.service";
-import {Router} from "@angular/router";
+import { AuthService } from "../services/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -15,7 +15,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     public authService: AuthService,
-    private router: Router
+    private router: Router,
+    @Inject('rootServerUrl') public rootServerUrl: string
   ) { }
 
   ngOnInit(): void {

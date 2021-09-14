@@ -1,5 +1,9 @@
+import { Sequelize } from "sequelize";
+const { DataTypes, Model } = require('sequelize');
+import { sequelize } from "../../Server";
+
 export interface UserInterface {
-    id: number;
+    id?: number;
     name: string;
     avatar: string;
     games: [];
@@ -9,8 +13,7 @@ export interface UserInterface {
 }
 
 
-export class User {
-    id: number;
+export class UserClass {
     name: string;
     avatar: string;
     games: [];
@@ -19,7 +22,6 @@ export class User {
     passwordHash: string;
 
     constructor(userData: any) {
-        this.id = userData.id;
         this.name = userData.username;
         this.avatar = '../assets/cat.jpg';
         this.games = [];
@@ -28,3 +30,23 @@ export class User {
         this.passwordHash = userData.password
     }
 }
+
+export const UserModel = sequelize.define('User', {
+    name: {
+        type: DataTypes.STRING
+    },
+    avatar: {
+        type: DataTypes.STRING
+    },
+    description: {
+        type: DataTypes.STRING
+    },
+    email: {
+        type: DataTypes.STRING
+    },
+    passwordHash: {
+        type: DataTypes.STRING
+    }
+}, {
+    tableName: 'Users'
+});

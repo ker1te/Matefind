@@ -5,7 +5,7 @@
   <a mat-button *ngIf="!authService.currentUserValue" (click)="onSignInClick()"><!-- <span class="fa fa-user fa-sm"></span>  -->Sign In</a>
   <button mat-button *ngIf="authService.currentUserValue" (click)="onUserClick()">
     <div class="user-block">
-      <img height="45px" src={{authService.currentUserValue.avatar}} alt={{authService.currentUserValue.name}}>
+      <img height="45px" src="{{rootServerUrl + authService.currentUserValue.avatar}}" alt={{authService.currentUserValue.name}}>
       <h2>{{ authService.currentUserValue.name }}</h2>
     </div>
   </button>

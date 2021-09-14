@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {Observable, of} from 'rxjs';
-import {map, startWith, tap} from 'rxjs/operators';
-import {Game, User} from "../../core/shared/types";
+import { Observable, of } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { Game, User } from "../../core/shared/types";
 import { UserService } from "../../services/user.service";
 import { AuthService } from "../../services/auth.service";
 import { FormControl } from "@angular/forms";
@@ -16,18 +16,19 @@ import { GamesService } from "../../services/games.service";
 export class UserProfileComponent implements OnInit {
 
   public myControl = new FormControl();
-  public filteredGames: Observable<Game[]>;
+  public filteredGames: Observable<Game[]> = of([]);
 
   private userId: number;
   public user: User;
 
-  public games: Game[];
+  public games: Game[] = [];
 
   constructor(
     private authService: AuthService,
     private userService: UserService,
     private gameService: GamesService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    @Inject('rootServerUrl') public rootServerUrl: string,
   ) {
     this.userId = +route.snapshot.params['id'];
   }
@@ -47,8 +48,8 @@ export class UserProfileComponent implements OnInit {
   public onAutocompleteGameClick(gameId: number): void {
     const game: Game = this.games.filter(g => g.id === gameId)[0];
     this.user.games.push(game);
-    this.myControl.reset();
-    this.filteredGames = of(this.games.filter(g => !this.user.games.includes(g)));
+    this.myControl.reset('');
+    this.games = this.games.filter(g => !this.user.games.includes(g));
   }
 
   public isItMe(): boolean {

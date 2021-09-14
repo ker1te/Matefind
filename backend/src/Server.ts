@@ -8,6 +8,12 @@ import methodOverride from "method-override";
 import cors from "cors";
 import "@tsed/ajv";
 import {config, rootDir} from "./config";
+import {Sequelize} from "sequelize";
+
+export const sequelize = new Sequelize('matefind', 'postgres', 'postgres', {
+  host: 'localhost',
+  dialect: 'postgres'
+});
 
 @Configuration({
   ...config,
@@ -21,7 +27,14 @@ import {config, rootDir} from "./config";
   },
   exclude: [
     "**/*.spec.ts"
-  ]
+  ],
+  statics: {
+    "/": [
+      {
+        root: `${rootDir}/public`
+      }
+    ]
+  }
 })
 export class Server {
   @Inject()

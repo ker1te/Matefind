@@ -1,38 +1,37 @@
 import { BodyParams, Controller, Get, PathParams, Post } from "@tsed/common";
-import {User, UserInterface} from "./User";
+import { UserInterface, UserModel } from "./User";
 
-const UserList: UserInterface[] = []
 
 @Controller("/users")
 export class UsersController {
   @Get("/") 
-  get() {
-    return UserList;
+  async get() {
+    const users = await UserModel.findAll();
+    return users;
   }
 
   @Get("/:id")
-  getById(
+  async getById(
       @PathParams('id') id:number
   ){
-    let user = UserList.filter(u => u.id == id)[0];
+    const user = await UserModel.findOne({ where: { id } });
     return user;
   }
 
   @Post("/")
-  post(
-    @BodyParams('data') user: any
+  async post(
+    @BodyParams('data') user: UserInterface
   ) {
-    user.id = UserList.length;
-    let newUser = new User(user);
-    UserList.push(newUser);
+    const newUser = await UserModel.create(user);
     return newUser;
   }
 
   @Post("/signIn")
-  signIn(
+  async signIn(
       @BodyParams('data') userData: any
   ){
-    let user = UserList.filter(u => u.name == userData.name && u.passwordHash == userData.passwordHash)[0];
+    const { name, passwordHash } = userData;
+    const user = await UserModel.findOne({ where: { name, passwordHash } });
     return user;
   }
 }

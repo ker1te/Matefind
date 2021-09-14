@@ -40,6 +40,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { GameTileComponent } from './games/game-tile/game-tile.component';
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
 
+import { rootServerUrl } from "./core/shared/constants";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +85,8 @@ import { UserProfileComponent } from './users/user-profile/user-profile.componen
   ],
   providers: [
     UserService,
-    NewsService
+    NewsService,
+    { provide: 'rootServerUrl', useValue: rootServerUrl }
   ],
   bootstrap: [AppComponent]
 })
