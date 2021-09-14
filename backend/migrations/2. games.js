@@ -2,7 +2,7 @@
 
 module.exports = {
     up: function (queryInterface, Sequelize) {
-        return queryInterface.createTable('Users', {
+        return queryInterface.createTable('Games', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
@@ -17,22 +17,7 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.STRING
             },
-            /* games: {
-                allowNull: false,
-                type: Sequelize.ARRAY
-            }, */
             description: {
-                allowNull: false,
-                type: Sequelize.STRING
-            },
-            isAdmin: {
-                type: Sequelize.BOOLEAN
-            },
-            email: {
-                allowNull: false,
-                type: Sequelize.STRING
-            },
-            passwordHash: {
                 allowNull: false,
                 type: Sequelize.STRING
             },
@@ -48,6 +33,6 @@ module.exports = {
     },
 
     down: function (queryInterface, Sequelize) {
-        return queryInterface.dropTable('Users');
+        return queryInterface.dropTable('Games');
     }
 };

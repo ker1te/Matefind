@@ -17,7 +17,7 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.greetingNote = this.authService.currentUserValue
       ? 'Have a nice day, ' + this.authService.currentUserValue.name + '!'
-      : 'Hello user! Is this your first time with us?'
+      : 'Hello! Is this your first time with us?'
   }
 
 }

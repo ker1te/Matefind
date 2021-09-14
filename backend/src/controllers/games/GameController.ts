@@ -1,17 +1,19 @@
-import {Controller, Get} from "@tsed/common";
-
-const GameList = [
-    { id: 0, name: 'Overwatch' },
-    { id: 1, name: 'CS:GO' },
-    { id: 2, name: 'Battlefield 4' },
-    { id: 3, name: 'Dota 2' },
-    { id: 4, name: 'Rainbow Six Siege' }
-]
+import { BodyParams, Controller, Get, Post } from "@tsed/common";
+import { GameInterface, GameModel } from "./Game";
 
 @Controller("/games")
 export class GamesController {
     @Get("/")
-    get() {
-        return GameList;
+    async get() {
+        const games = await GameModel.findAll();
+        return games;
+    }
+
+    @Post("/")
+    async post(
+        @BodyParams('data') game: GameInterface
+    ) {
+        const newGame = await GameModel.create(game);
+        return newGame;
     }
 }

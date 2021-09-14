@@ -1,17 +1,14 @@
 const { DataTypes } = require('sequelize');
 import { sequelize } from "../../Server";
 
-export interface UserInterface {
+export interface GameInterface {
     id?: number;
     name: string;
     avatar: string;
-    games: [];
     description: string;
-    email: string;
-    passwordHash: string;
 }
 
-export const UserModel = sequelize.define('User', {
+export const GameModel = sequelize.define('Game', {
     name: {
         type: DataTypes.STRING
     },
@@ -20,13 +17,7 @@ export const UserModel = sequelize.define('User', {
     },
     description: {
         type: DataTypes.STRING
-    },
-    email: {
-        type: DataTypes.STRING
-    },
-    passwordHash: {
-        type: DataTypes.STRING
     }
 }, {
-    tableName: 'Users'
+    tableName: 'Games'
 });
