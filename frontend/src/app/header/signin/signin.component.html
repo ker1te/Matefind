@@ -20,9 +20,9 @@
   </mat-dialog-content>
   <mat-dialog-actions>
     <span class="flex-spacer"></span>
-    <button mat-button (click)="onRegistrationClick()">Registration</button>
+    <a mat-button (click)="onRegistrationClick()">Registration</a>
     <button mat-button type="submit"[disabled]="loginForm.form.invalid"
-            class="login-button" (click)="onSubmit()">Submit</button>
+            class="login-button" (click)="onSubmit()" (keyup.enter)="onSubmit()">Submit</button>
   </mat-dialog-actions>
   </form>
 </div>

@@ -32,6 +32,7 @@ export class UsersController {
   ){
     const { name, passwordHash } = userData;
     const user = await UserModel.findOne({ where: { name, passwordHash } });
+    console.log(user);
     return user;
   }
 }

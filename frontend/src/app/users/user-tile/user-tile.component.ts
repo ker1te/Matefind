@@ -9,14 +9,12 @@ import { User } from 'src/app/core/shared/types';
 export class UserTileComponent implements OnInit {
 
   @Input('user') user: User;
-  userGames: string;
 
   constructor(
     @Inject('rootServerUrl') public rootServerUrl: string
   ) { }
 
   ngOnInit(): void {
-    this.userGames = this.user.games.map(g => g.name).join(' · ');
   }
 
 }

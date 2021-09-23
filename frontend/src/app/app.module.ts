@@ -22,6 +22,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips'
 
 import { MainComponent } from './main/main.component';
 import { UsersComponent } from './users/users.component';
@@ -41,6 +43,7 @@ import { GameTileComponent } from './games/game-tile/game-tile.component';
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
 
 import { rootServerUrl } from "./core/shared/constants";
+import { GameCreateModalComponent } from './games/game-create-modal/game-create-modal.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,8 @@ import { rootServerUrl } from "./core/shared/constants";
     PublicationsComponent,
     MessagesComponent,
     GameTileComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    GameCreateModalComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +85,9 @@ import { rootServerUrl } from "./core/shared/constants";
     MatProgressSpinnerModule,
     MatMenuModule,
     MatDividerModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatIconModule,
+    MatChipsModule
   ],
   providers: [
     UserService,

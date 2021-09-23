@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Create new game</h1>
+  <form novalidate [formGroup]="createForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+    <mat-dialog-content>
+      <p>
+        <mat-form-field>
+          <input matInput placeholder="Name" type="text" name="name" formControlName="name" required/>
+          <mat-error *ngIf="formErrors.name">{{ formErrors.name }}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Description" type="text" name="description" formControlName="description" required/>
+          <mat-error *ngIf="formErrors.description">{{ formErrors.description }}</mat-error>
+        </mat-form-field>
+      </p>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <span class="flex-spacer"></span>
+      <button mat-button type="submit" [disabled]="createForm.invalid" class="login-button">Create</button>
+    </mat-dialog-actions>
+  </form>
+</div>

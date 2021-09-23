@@ -19,8 +19,8 @@ type validationMessagesType = {
 })
 export class RegistrationComponent implements OnInit {
 
-  regForm: FormGroup;
-  user: any;
+  public regForm: FormGroup;
+  public user: any;
   @ViewChild('fform') regFormDirective:any;
 
   formErrors: formErrorsType = {

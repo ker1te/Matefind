@@ -21,6 +21,9 @@ export const UserModel = sequelize.define('User', {
     description: {
         type: DataTypes.STRING
     },
+    isAdmin: {
+        type: DataTypes.BOOLEAN
+    },
     email: {
         type: DataTypes.STRING
     },

@@ -10,7 +10,7 @@ import { map } from "rxjs/operators";
 })
 export class AuthService {
 
-  private currentUserSubject: any;
+  private currentUserSubject: User;
 
   constructor(
     private http: HttpClient
@@ -22,16 +22,20 @@ export class AuthService {
     return this.currentUserSubject;
   }
 
-  signin(userData: any): Observable<User> {
+  public signin(userData: any): Observable<User> {
     const body = { data: { ...userData } }
     return this.http.post<User>(serverUrl + 'users/signIn', body)
       .pipe(map(user => this.currentUserSubject = user))
   }
 
-  register(userData: any): Observable<User> {
+  public register(userData: any): Observable<User> {
     const body = { data: { ...userData } }
     return this.http.post<User>(serverUrl + 'users',  body)
       .pipe(map(user => this.currentUserSubject = user))
+  }
+
+  public isAdmin(): boolean {
+    return this.currentUserSubject && this.currentUserSubject.isAdmin;
   }
 
 }

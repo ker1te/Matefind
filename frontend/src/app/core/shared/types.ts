@@ -7,6 +7,7 @@ export interface User {
   id: number;
   name: string;
   avatar: string;
+  isAdmin: boolean;
   games: Game[];
   description: string;
   links: SocialLink[];
