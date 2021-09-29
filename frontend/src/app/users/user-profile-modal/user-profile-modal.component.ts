@@ -18,15 +18,15 @@ export class UserProfileModalComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { userId: number },
     @Inject('rootServerUrl') public rootServerUrl: string,
-    private userSerivce: UserService,
+    private userService: UserService,
     public authService: AuthService
   ) {
     this.userId = data.userId;
   }
 
   ngOnInit(): void {
-    this.userSerivce.getUserById(this.userId)
-    .subscribe((user: User) => {
+    this.userService.getUserById(this.userId)
+      .subscribe((user: User) => {
         this.user = user;
       })
   }

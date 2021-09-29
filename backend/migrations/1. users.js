@@ -17,10 +17,6 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.STRING
             },
-            /* games: {
-                allowNull: false,
-                type: Sequelize.ARRAY
-            }, */
             description: {
                 allowNull: false,
                 type: Sequelize.STRING

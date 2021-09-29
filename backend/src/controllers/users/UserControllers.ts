@@ -1,4 +1,4 @@
-import { BodyParams, Controller, Get, PathParams, Post } from "@tsed/common";
+import { BodyParams, Controller, Get, PathParams, Post, Put } from "@tsed/common";
 import { UserInterface, UserModel } from "./User";
 
 
@@ -15,6 +15,16 @@ export class UsersController {
       @PathParams('id') id:number
   ){
     const user = await UserModel.findOne({ where: { id } });
+    return user;
+  }
+
+  @Put("/:id")
+  async updateUser(
+      @PathParams('id') id: number,
+      @BodyParams('data') data: UserInterface
+  ) {
+    const updatedUser = await UserModel.update({ ...data }, { where: { id } });
+    const user = await UserModel.findOne({ where: { id: updatedUser[0] } })
     return user;
   }
 

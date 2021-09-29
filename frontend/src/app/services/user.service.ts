@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../core/shared/types';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { serverUrl } from '../core/shared/constants';
 
@@ -19,6 +19,10 @@ export class UserService {
 
   getUserById(id: number): Observable<User> {
     return this.http.get<User>(serverUrl + 'users/' + id);
+  }
+
+  updateUserData(userId: number, data: any): Observable<User> {
+    return this.http.put<User>(serverUrl + 'users/' + userId, { data })
   }
 
 }

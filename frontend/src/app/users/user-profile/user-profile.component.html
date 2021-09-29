@@ -6,8 +6,13 @@
         <h1>{{ user.name }}</h1>
         <div class="games-block">
           <h2>Games: </h2>
-          <span *ngFor="let game of user.games" class="game-item">{{ game.name }}</span>
-          <span *ngIf="!isItMe()">None</span>
+          <mat-chip-list>
+            <mat-chip class="game-chip" *ngFor="let game of userGames" [removable]="isItMe()" (removed)="deleteUserGame(game.id)">
+              {{ game.name }}
+              <mat-icon matChipRemove *ngIf="isItMe()">cancel</mat-icon>
+            </mat-chip>
+          </mat-chip-list>
+          <span *ngIf="!isItMe() && !userGames.length">None</span>
           <div *ngIf="isItMe() && games.length" class="games-autocomplete">
             <input type="text"
                    placeholder="Add"

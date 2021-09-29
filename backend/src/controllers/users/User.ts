@@ -5,7 +5,6 @@ export interface UserInterface {
     id?: number;
     name: string;
     avatar: string;
-    games: [];
     description: string;
     email: string;
     passwordHash: string;

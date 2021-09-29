@@ -19,9 +19,15 @@ export class UserProfileComponent implements OnInit {
   public filteredGames: Observable<Game[]> = of([]);
 
   private userId: number;
+  public userGames: Game[] = [
+    { id: 0, description: 'asd', name: 'Over', avatar: 'cat.jpg' }
+  ];
   public user: User;
 
-  public games: Game[] = [];
+  public games: Game[] = [
+    { id: 0, description: 'asd', name: 'Over', avatar: 'cat.jpg' },
+    { id: 1, description: 'asd', name: 'CS', avatar: 'cat.jpg' }
+  ]
 
   constructor(
     private authService: AuthService,
@@ -38,22 +44,21 @@ export class UserProfileComponent implements OnInit {
       .subscribe((user: User) => {
         this.user = user;
       });
-    this.gameService.getGames()
-      .subscribe((games: Game[]) => {
-        this.games = games;
-        this.initializeGameAutocomplete();
-      });
+    this.initializeGameAutocomplete();
   }
 
   public onAutocompleteGameClick(gameId: number): void {
     const game: Game = this.games.filter(g => g.id === gameId)[0];
-    this.user.games.push(game);
     this.myControl.reset('');
-    this.games = this.games.filter(g => !this.user.games.includes(g));
+    this.games = this.games.filter(g => !this.userGames.includes(g));
   }
 
   public isItMe(): boolean {
     return this.authService.currentUserValue && this.authService.currentUserValue.id === this.userId;
+  }
+
+  public deleteUserGame(gameId: number): void {
+    console.log(gameId);
   }
 
   private initializeGameAutocomplete(): void {

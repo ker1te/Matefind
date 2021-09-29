@@ -21,9 +21,7 @@ export class GamesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.authService.isAdmin();
-    this.gamesService.getGames()
-      .subscribe(games => this.games = games);
+    this._getGames();
   }
 
   public onGameClick(gameId: number) {
@@ -41,7 +39,12 @@ export class GamesComponent implements OnInit {
       data: {}
     });
 
-    dialogRef.afterClosed().subscribe(result => { });
+    dialogRef.afterClosed().subscribe(result => { this._getGames() });
+  }
+
+  private _getGames(): void {
+    this.gamesService.getGames()
+      .subscribe(games => this.games = games);
   }
 
 }

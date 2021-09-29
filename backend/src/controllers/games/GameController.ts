@@ -1,4 +1,4 @@
-import { BodyParams, Controller, Get, Post } from "@tsed/common";
+import { BodyParams, Controller, Delete, Get, PathParams, Post } from "@tsed/common";
 import { GameInterface, GameModel } from "./Game";
 
 @Controller("/games")
@@ -15,5 +15,13 @@ export class GamesController {
     ) {
         const newGame = await GameModel.create(game);
         return newGame;
+    }
+
+    @Delete("/:id")
+    async delete(
+        @PathParams('id') id:number
+    ) {
+        const deletedGame = await GameModel.destroy({ where: { id } })
+        return deletedGame;
     }
 }
