@@ -18,7 +18,7 @@
                    placeholder="Search"
                    aria-label="Game"
                    matInput
-                   [formControl]="myControl"
+                   [formControl]="autoCompleteControl"
                    [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete">
               <mat-option *ngFor="let game of filteredGames | async" [value]="game.name" (click)="onAutocompleteGameClick(game.id)">
@@ -38,7 +38,8 @@
     <div class="profile-body">
       <div class="desc-block">
         <p *ngIf="!isItMe()" class="desc-text">{{ user.description }}</p>
-        <textarea *ngIf="isItMe()" rows="9" cols="150" class="desc-textarea" placeholder="Description"></textarea>
+        <textarea *ngIf="isItMe()" [ngModel]="user.description" [formControl]="descriptionControl" rows="9" cols="150" class="desc-textarea" placeholder="Description"></textarea>
+        <button mat-button class="save-button" *ngIf="isItMe()" (click)="onSaveDescriptionClick()" disabled="{{saveDescriptionButtonDisable}}">Save Changes</button>
       </div>
     </div>
   </div>

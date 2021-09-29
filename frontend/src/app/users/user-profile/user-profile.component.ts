@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import {map, startWith, tap} from 'rxjs/operators';
 import { Game, User } from "../../core/shared/types";
 import { UserService } from "../../services/user.service";
 import { AuthService } from "../../services/auth.service";
@@ -15,8 +15,10 @@ import { GamesService } from "../../services/games.service";
 })
 export class UserProfileComponent implements OnInit {
 
-  public myControl = new FormControl();
+  public autoCompleteControl = new FormControl();
+  public descriptionControl = new FormControl();
   public filteredGames: Observable<Game[]> = of([]);
+  public saveDescriptionButtonDisable: boolean = true;
 
   public user: User;
   private userId: number;
@@ -44,6 +46,16 @@ export class UserProfileComponent implements OnInit {
         this.userGames = userGames;
         this._getGames();
       })
+
+    this.initializeDescriptionControl();
+  }
+
+  public onSaveDescriptionClick(): void {
+    this.userService.updateUserData(this.userId, { description: this.descriptionControl.value })
+        .subscribe((user: User) => {
+          this.user = user;
+          this.descriptionControl.setValue(user.description)
+        })
   }
 
   public onAutocompleteGameClick(gameId: number): void {
@@ -51,7 +63,7 @@ export class UserProfileComponent implements OnInit {
     this.userService.addUserGame(this.userId, game.id)
       .subscribe((game: Game) => {
         this.userGames.push(game);
-        this.myControl.reset('');
+        this.autoCompleteControl.reset('');
         this._getGames()
       })
   }
@@ -71,10 +83,16 @@ export class UserProfileComponent implements OnInit {
   }
 
   private initializeGameAutocomplete(): void {
-    this.filteredGames = this.myControl.valueChanges.pipe(
+    this.filteredGames = this.autoCompleteControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
     );
+  }
+
+  private initializeDescriptionControl(): void {
+    this.descriptionControl.valueChanges.pipe(
+        tap((value: string) => this.saveDescriptionButtonDisable = this.user.description === value.toString())
+    ).subscribe()
   }
 
   private _filter(value: string): Game[] {

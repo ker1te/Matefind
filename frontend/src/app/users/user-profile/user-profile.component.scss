@@ -70,14 +70,20 @@
       h3 {
         font-size: 27px;
       }
-      .desc-text {
-        font-size: 23px;
-      }
-      .desc-textarea {
-        padding: 5px;
-        border: 1px solid #D4D4D4;
-        border-radius: 5px;
-        font-size: 20px;
+      .desc-block {
+        .desc-text {
+          font-size: 23px;
+        }
+        .desc-textarea {
+          width: 100%;
+          padding: 5px;
+          border: 1px solid #D4D4D4;
+          border-radius: 5px;
+          font-size: 20px;
+        }
+        .save-button {
+          font-size: 1.3em;
+        }
       }
     }
   }
