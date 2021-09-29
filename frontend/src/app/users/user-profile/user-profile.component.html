@@ -15,7 +15,7 @@
           <span *ngIf="!isItMe() && !userGames.length">None</span>
           <div *ngIf="isItMe() && games.length" class="games-autocomplete">
             <input type="text"
-                   placeholder="Add"
+                   placeholder="Search"
                    aria-label="Game"
                    matInput
                    [formControl]="myControl"

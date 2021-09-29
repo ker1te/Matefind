@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../core/shared/types';
+import { Game, User } from '../core/shared/types';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { serverUrl } from '../core/shared/constants';
@@ -22,7 +22,20 @@ export class UserService {
   }
 
   updateUserData(userId: number, data: any): Observable<User> {
-    return this.http.put<User>(serverUrl + 'users/' + userId, { data })
+    return this.http.put<User>(serverUrl + 'users/' + userId, { data });
+  }
+
+  getUserGames(userId: number): Observable<Game[]> {
+    return this.http.get<Game[]>(serverUrl + 'users/' + userId + '/games/');
+  }
+
+  addUserGame(userId: number, gameId: number): Observable<Game> {
+    const data = { gameId }
+    return this.http.post<Game>(serverUrl + 'users/' + userId + '/games/', { data });
+  }
+
+  deleteUserGame(userId: number, gameId: number): Observable<any> {
+    return this.http.delete<any>(serverUrl + 'users/' + userId + '/games/' + gameId);
   }
 
 }

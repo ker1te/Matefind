@@ -32,3 +32,14 @@ export const UserModel = sequelize.define('User', {
 }, {
     tableName: 'Users'
 });
+
+export const UserGamesModel = sequelize.define('UserGames', {
+    userId: {
+        type: DataTypes.INTEGER
+    },
+    gameId: {
+        type: DataTypes.INTEGER
+    }
+}, {
+    tableName: 'UserGames'
+})

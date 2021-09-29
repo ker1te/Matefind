@@ -18,16 +18,11 @@ export class UserProfileComponent implements OnInit {
   public myControl = new FormControl();
   public filteredGames: Observable<Game[]> = of([]);
 
-  private userId: number;
-  public userGames: Game[] = [
-    { id: 0, description: 'asd', name: 'Over', avatar: 'cat.jpg' }
-  ];
   public user: User;
+  private userId: number;
+  public userGames: Game[] = [];
 
-  public games: Game[] = [
-    { id: 0, description: 'asd', name: 'Over', avatar: 'cat.jpg' },
-    { id: 1, description: 'asd', name: 'CS', avatar: 'cat.jpg' }
-  ]
+  public games: Game[] = [];
 
   constructor(
     private authService: AuthService,
@@ -44,13 +39,21 @@ export class UserProfileComponent implements OnInit {
       .subscribe((user: User) => {
         this.user = user;
       });
-    this.initializeGameAutocomplete();
+    this.userService.getUserGames(this.userId)
+      .subscribe((userGames: Game[]) => {
+        this.userGames = userGames;
+        this._getGames();
+      })
   }
 
   public onAutocompleteGameClick(gameId: number): void {
     const game: Game = this.games.filter(g => g.id === gameId)[0];
-    this.myControl.reset('');
-    this.games = this.games.filter(g => !this.userGames.includes(g));
+    this.userService.addUserGame(this.userId, game.id)
+      .subscribe((game: Game) => {
+        this.userGames.push(game);
+        this.myControl.reset('');
+        this._getGames()
+      })
   }
 
   public isItMe(): boolean {
@@ -58,7 +61,13 @@ export class UserProfileComponent implements OnInit {
   }
 
   public deleteUserGame(gameId: number): void {
-    console.log(gameId);
+    this.userService.deleteUserGame(this.userId, gameId)
+      .subscribe((deletedGameId: number) => {
+        if (deletedGameId) {
+          this.userGames = this.userGames.filter((game: Game) => game.id !== gameId);
+        }
+        this._getGames();
+      });
   }
 
   private initializeGameAutocomplete(): void {
@@ -71,6 +80,14 @@ export class UserProfileComponent implements OnInit {
   private _filter(value: string): Game[] {
     const filterValue = value.toLowerCase();
     return this.games.filter(game => game.name.toLowerCase().includes(filterValue));
+  }
+
+  private _getGames(): void {
+    this.gameService.getGames()
+      .subscribe((games: Game[]) => {
+        this.games = games.filter(g => !this.userGames.map((ug: Game) => ug.id).includes(g.id));
+        this.initializeGameAutocomplete();
+      })
   }
 
 }

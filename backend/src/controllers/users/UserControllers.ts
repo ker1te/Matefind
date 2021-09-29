@@ -1,5 +1,6 @@
-import { BodyParams, Controller, Get, PathParams, Post, Put } from "@tsed/common";
-import { UserInterface, UserModel } from "./User";
+import { BodyParams, Controller, Delete, Get, PathParams, Post, Put } from "@tsed/common";
+import { UserGamesModel, UserInterface, UserModel } from "./User";
+import { GameModel } from "../games/Game";
 
 
 @Controller("/users")
@@ -16,6 +17,15 @@ export class UsersController {
   ){
     const user = await UserModel.findOne({ where: { id } });
     return user;
+  }
+
+  @Get("/:id/games")
+  async getUserGames(
+      @PathParams('id') userId:number
+  ){
+    const userGamesResponse = await UserGamesModel.findAll({ where: { userId } });
+    const userGames = Promise.all(userGamesResponse.map(async (ug: any) => await GameModel.findOne({ where: { id: ug.gameId } })));
+    return userGames;
   }
 
   @Put("/:id")
@@ -36,13 +46,33 @@ export class UsersController {
     return newUser;
   }
 
+  @Post("/:id/games")
+  async createUserGame(
+      @PathParams('id') userId: number,
+      @BodyParams('data') data: any
+  ) {
+    const { gameId } = data;
+    const newUserGameResult = await UserGamesModel.create({ userId, gameId });
+    const newUserGame = await GameModel.findOne({ where: { id: newUserGameResult.getDataValue('gameId') } })
+    return newUserGame;
+  }
+
   @Post("/signIn")
   async signIn(
       @BodyParams('data') userData: any
   ){
     const { name, passwordHash } = userData;
     const user = await UserModel.findOne({ where: { name, passwordHash } });
-    console.log(user);
     return user;
   }
+
+  @Delete("/:userId/games/:gameId")
+  async deleteUserGame(
+      @PathParams('userId') userId: number,
+      @PathParams('gameId') gameId: number
+  ) {
+    const userGame = await UserGamesModel.destroy({ where: { userId, gameId } })
+    return userGame.toString();
+  }
+
 }
