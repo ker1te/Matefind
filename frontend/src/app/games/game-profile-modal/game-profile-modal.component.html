@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="profile-block" *ngIf="game">
+        <div class="profile-header">
+            <img src="{{rootServerUrl + game.avatar}}" alt={{game.name}}>
+            <div class="user-info">
+                <h1>{{ game.name }}</h1>
+                <!-- <div class="link-block">
+                  <a *ngFor="let link of links" [ngClass]="link.resource.toLowerCase()" mat-stroked-button href="{{ link.link }}}" target="_blank">
+                    <span>{{ link.resource }}</span>
+                  </a>
+                </div> -->
+            </div>
+        </div>
+        <div class="profile-body">
+            <div class="desc-block">
+                <p class="desc-text">{{ game.description }}</p>
+            </div>
+        </div>
+    </div>
+    <mat-spinner *ngIf="!game" class="spinner" diameter="70"></mat-spinner>
+</div>

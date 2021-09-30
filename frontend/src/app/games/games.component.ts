@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { GamesService } from "../services/games.service";
 import { Game } from "../core/shared/types";
-import { MatDialog } from "@angular/material/dialog";
 import { GameCreateModalComponent } from "./game-create-modal/game-create-modal.component";
 import { AuthService } from "../services/auth.service";
+import { ModalService } from "../services/modal.service";
+import { GameProfileModalComponent } from "./game-profile-modal/game-profile-modal.component";
 
 @Component({
   selector: 'app-games',
@@ -17,7 +18,7 @@ export class GamesComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private gamesService: GamesService,
-    private dialog: MatDialog,
+    private modalService: ModalService
   ) { }
 
   ngOnInit(): void {
@@ -25,7 +26,7 @@ export class GamesComponent implements OnInit {
   }
 
   public onGameClick(gameId: number) {
-    console.log(gameId);
+    this.modalService.openDialog(GameProfileModalComponent, { gameId });
   }
 
   public onCreateGameClick(): void {
@@ -33,13 +34,8 @@ export class GamesComponent implements OnInit {
   }
 
   private _openCreateGameModal(): void {
-    const dialogRef = this.dialog.open(GameCreateModalComponent, {
-      width: '70%',
-      height: '80%',
-      data: {}
-    });
-
-    dialogRef.afterClosed().subscribe(result => { this._getGames() });
+    this.modalService.openDialog(GameCreateModalComponent)
+      .afterClosed().subscribe(() => this._getGames());
   }
 
   private _getGames(): void {

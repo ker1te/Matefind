@@ -1,9 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { UserService } from "../../services/user.service";
 import { AuthService } from "../../services/auth.service";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { SocialLink, User } from "../../core/shared/types";
-import {catchError, finalize} from "rxjs/operators";
+import { User } from "../../core/shared/types";
 
 @Component({
   selector: 'app-user-profile',
@@ -29,10 +28,6 @@ export class UserProfileModalComponent implements OnInit {
       .subscribe((user: User) => {
         this.user = user;
       })
-  }
-
-  itsMe(): boolean {
-    return this.authService.currentUserValue ? this.userId == this.authService.currentUserValue.id : false;
   }
 
 }

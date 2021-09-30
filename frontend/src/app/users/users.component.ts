@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../core/shared/types';
-import { MatDialog } from "@angular/material/dialog";
-import {UserProfileModalComponent} from "./user-profile-modal/user-profile-modal.component";
+import { UserProfileModalComponent } from "./user-profile-modal/user-profile-modal.component";
+import { ModalService } from "../services/modal.service";
 
 @Component({
   selector: 'app-users',
@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private dialog: MatDialog,
+    private modalService: ModalService
   ) { }
 
   ngOnInit(): void {
@@ -28,13 +28,7 @@ export class UsersComponent implements OnInit {
   }
 
   private openUserProfileDialog(data: any): void {
-    const dialogRef = this.dialog.open(UserProfileModalComponent, {
-      width: '70%',
-      height: '80%',
-      data
-    });
-
-    dialogRef.afterClosed().subscribe(result => {});
+    this.modalService.openDialog(UserProfileModalComponent, data);
   }
 
 }

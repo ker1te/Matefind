@@ -44,6 +44,7 @@ import { UserProfileComponent } from './users/user-profile/user-profile.componen
 
 import { rootServerUrl } from "./core/shared/constants";
 import { GameCreateModalComponent } from './games/game-create-modal/game-create-modal.component';
+import { GameProfileModalComponent } from './games/game-profile-modal/game-profile-modal.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { GameCreateModalComponent } from './games/game-create-modal/game-create-
     MessagesComponent,
     GameTileComponent,
     UserProfileComponent,
-    GameCreateModalComponent
+    GameCreateModalComponent,
+    GameProfileModalComponent
   ],
   imports: [
     BrowserModule,

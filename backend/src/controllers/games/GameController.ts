@@ -9,6 +9,14 @@ export class GamesController {
         return games;
     }
 
+    @Get("/:id")
+    async getGameById(
+        @PathParams('id') id:number
+    ) {
+        const game = await GameModel.findOne({ where: { id } });
+        return game;
+    }
+
     @Post("/")
     async post(
         @BodyParams('data') game: GameInterface

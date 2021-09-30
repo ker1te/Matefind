@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RegistrationComponent } from './registration/registration.component';
 import { SigninComponent } from './signin/signin.component';
 import { AuthService } from "../services/auth.service";
 import { Router } from "@angular/router";
+import { ModalService } from "../services/modal.service";
 
 @Component({
   selector: 'app-header',
@@ -13,7 +13,7 @@ import { Router } from "@angular/router";
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private dialog: MatDialog,
+    private modalService: ModalService,
     public authService: AuthService,
     private router: Router,
     @Inject('rootServerUrl') public rootServerUrl: string
@@ -31,26 +31,14 @@ export class HeaderComponent implements OnInit {
   }
 
   private openSignInDialog(): void {
-    const dialogRef = this.dialog.open(SigninComponent, {
-      width: '450px',
-      height: '400px',
-      data: {
-        regDialogOpen: this.openRegistrationDialog
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if(result) { if(result.regClick){ this.openRegistrationDialog() }}
-    });
+    this.modalService.openAuthDialog(SigninComponent, { regDialogOpen: this.openRegistrationDialog })
+      .afterClosed().subscribe(result => {
+        if(result) { if(result.regClick){ this.openRegistrationDialog() }}
+      });
   }
 
   private openRegistrationDialog(): void {
-    const dialogRef = this.dialog.open(RegistrationComponent, {
-      width: '450px',
-      height: '450px'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {  });
+    this.modalService.openAuthDialog(RegistrationComponent);
   }
 
 }

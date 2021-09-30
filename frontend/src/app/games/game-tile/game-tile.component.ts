@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Game} from "../../core/shared/types";
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Game } from "../../core/shared/types";
 
 @Component({
   selector: 'app-game-tile',
@@ -9,7 +9,9 @@ import {Game} from "../../core/shared/types";
 export class GameTileComponent implements OnInit {
   @Input('game') game: Game;
 
-  constructor() { }
+  constructor(
+      @Inject('rootServerUrl') public rootServerUrl: string
+  ) { }
 
   ngOnInit(): void {
   }
