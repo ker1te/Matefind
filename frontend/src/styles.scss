@@ -27,3 +27,7 @@ body { margin: 0; }
   -o-user-select: none;
   user-select: none;
 }
+
+.mat-button-focus-overlay {
+  background-color: transparent!important;
+}

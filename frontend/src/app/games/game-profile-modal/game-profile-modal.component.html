@@ -2,13 +2,17 @@
     <div class="profile-block" *ngIf="game">
         <div class="profile-header">
             <img src="{{rootServerUrl + game.avatar}}" alt={{game.name}}>
-            <div class="user-info">
+            <div class="game-info">
                 <h1>{{ game.name }}</h1>
                 <!-- <div class="link-block">
                   <a *ngFor="let link of links" [ngClass]="link.resource.toLowerCase()" mat-stroked-button href="{{ link.link }}}" target="_blank">
                     <span>{{ link.resource }}</span>
                   </a>
                 </div> -->
+            </div>
+            <span class="flex-spacer"></span>
+            <div class="action-buttons-block">
+                <button mat-button class="button">Open page</button>
             </div>
         </div>
         <div class="profile-body">

@@ -8,7 +8,7 @@
         border-radius: 100%;
         height: 200px;
       }
-      .user-info {
+      .game-info {
         display: flex;
         flex-direction: column;
         margin-left: 30px;
@@ -28,6 +28,13 @@
           .steam { background-color: #07049f; }
           .battlenet { background-color: #25cde3; }
           .vk { background-color: #4d7cf1; }
+        }
+      }
+      .action-buttons-block {
+        .button {
+          font-size: 23px;
+          background: #FCA311;
+          color: #fff;
         }
       }
     }

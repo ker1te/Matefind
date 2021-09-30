@@ -67,11 +67,13 @@
 
     .profile-body {
       padding: 10px 0px;
-      h3 {
-        font-size: 27px;
-      }
       .desc-block {
+        h3 {
+          font-size: 25px;
+          margin: 5px 0;
+        }
         .desc-text {
+          margin: 0;
           font-size: 23px;
         }
         .desc-textarea {

@@ -37,6 +37,7 @@
     </div>
     <div class="profile-body">
       <div class="desc-block">
+        <h3>About:</h3>
         <p *ngIf="!isItMe()" class="desc-text">{{ user.description }}</p>
         <textarea *ngIf="isItMe()" [ngModel]="user.description" [formControl]="descriptionControl" rows="9" cols="150" class="desc-textarea" placeholder="Description"></textarea>
         <button mat-button class="save-button" *ngIf="isItMe()" (click)="onSaveDescriptionClick()" disabled="{{saveDescriptionButtonDisable}}">Save Changes</button>

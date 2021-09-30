@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { UserService } from "../../services/user.service";
 import { AuthService } from "../../services/auth.service";
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { User } from "../../core/shared/types";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { Game, User } from "../../core/shared/types";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-user-profile',
@@ -13,12 +14,15 @@ export class UserProfileModalComponent implements OnInit {
 
   public userId: number;
   public user: User;
+  public userGames: Game[];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { userId: number },
     @Inject('rootServerUrl') public rootServerUrl: string,
+    public dialogRef: MatDialogRef<UserProfileModalComponent>,
     private userService: UserService,
-    public authService: AuthService
+    public authService: AuthService,
+    private router: Router
   ) {
     this.userId = data.userId;
   }
@@ -27,7 +31,23 @@ export class UserProfileModalComponent implements OnInit {
     this.userService.getUserById(this.userId)
       .subscribe((user: User) => {
         this.user = user;
+      });
+    this._getUserGames(this.userId);
+  }
+
+  private _getUserGames(userId: number): void {
+    this.userService.getUserGames(userId)
+      .subscribe((games: Game[]) => {
+        this.userGames = games
       })
   }
 
+  public openUserPage(): void {
+    this.dialogRef.close();
+    this.router.navigate(['users/' + this.userId]);
+  }
+
+  public sendMessageToUser(): void {
+    console.log('sendMessageToUser ' + this.userId)
+  }
 }

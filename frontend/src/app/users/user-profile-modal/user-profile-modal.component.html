@@ -4,11 +4,19 @@
       <img src="{{rootServerUrl + user.avatar}}" alt={{user.name}}>
       <div class="user-info">
         <h1>{{ user.name }}</h1>
+        <mat-chip-list>
+          <mat-chip class="game-chip" *ngFor="let game of userGames">{{ game.name }}</mat-chip>
+        </mat-chip-list>
         <!-- <div class="link-block">
           <a *ngFor="let link of links" [ngClass]="link.resource.toLowerCase()" mat-stroked-button href="{{ link.link }}}" target="_blank">
             <span>{{ link.resource }}</span>
           </a>
         </div> -->
+      </div>
+      <span class="flex-spacer"></span>
+      <div class="action-buttons-block">
+        <button mat-button class="page-button" (click)="openUserPage()">Open page</button>
+        <button *ngIf="authService.currentUserValue" mat-button class="message-button" (click)="sendMessageToUser()">Send message</button>
       </div>
     </div>
     <div class="profile-body">
