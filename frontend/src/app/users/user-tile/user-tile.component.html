@@ -7,7 +7,9 @@
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p>{{ user.description }}</p>
+      <mat-spinner *ngIf="userGamesIsLoading" class="spinner" diameter="25"></mat-spinner>
+      <p *ngIf="!userGamesIsLoading" class="user-game-list">{{ userGames }}</p>
+      <!-- <p class="user-description">{{ user.description }}</p> -->
     </mat-card-content>
   </mat-card>
 </div>
