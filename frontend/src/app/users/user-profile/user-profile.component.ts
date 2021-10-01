@@ -33,7 +33,7 @@ export class UserProfileComponent implements OnInit {
     private route: ActivatedRoute,
     @Inject('rootServerUrl') public rootServerUrl: string,
   ) {
-    this.userId = +route.snapshot.params['id'];
+    this.userId = +this.route.snapshot.params['id'];
   }
 
   ngOnInit(): void {

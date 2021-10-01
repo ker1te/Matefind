@@ -42,6 +42,7 @@ export class UsersComponent implements OnInit {
   }
 
   public searchUsersByParams(): void {
+    if (!this.searchText && !this.gamesFilterControl.value.length) { return; }
     this.listIsLoading = true;
     const searchParams = {
       name: this.searchText,
@@ -58,7 +59,7 @@ export class UsersComponent implements OnInit {
 
   public onClearSearch(): void {
     this.searchText = '';
-    this.gamesFilterControl.reset();
+    this.gamesFilterControl.setValue([]);
     this._getUserList();
   }
 
@@ -74,6 +75,7 @@ export class UsersComponent implements OnInit {
     this.gameService.getGames()
     .subscribe((games: Game[]) => {
       this.games = games;
+      this.gamesFilterControl.setValue([]);
     })
   }
 }

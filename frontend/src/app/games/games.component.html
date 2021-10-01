@@ -1,6 +1,12 @@
 <div class="container">
-  <div *ngIf="authService.isAdmin()" class="control-panel">
-    <button mat-stroked-button (click)="onCreateGameClick()">Create</button>
+  <div class="search-container">
+    <input [(ngModel)]="searchText" type="text" placeholder="Find by name" matInput (keyup.enter)="searchGamesByParams()">
+    <button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="onClearSearch()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <button mat-button class="search-button" (click)="searchGamesByParams()">Find</button>
+    <span class="flex-spacer"></span>
+    <button *ngIf="authService.isAdmin()" mat-stroked-button (click)="onCreateGameClick()">Create</button>
   </div>
   <app-game-tile *ngFor="let game of games" [game]="game" (click)="onGameClick(game.id)"></app-game-tile>
   <mat-spinner *ngIf="!games" class="spinner" diameter="70"></mat-spinner>

@@ -19,7 +19,12 @@ export class GamesService {
 
   getGameById(gameId: number): Observable<Game> {
     return this.http.get<Game>(serverUrl + 'games/' + gameId);
-}
+  }
+
+  getGamesByName(name: string): Observable<Game[]> {
+    const data = { name };
+    return this.http.post<Game[]>(serverUrl + 'games/findByName', { data });
+  }
 
   createGame(game: any): Observable<Game> {
     const body = { data: { ...game } };

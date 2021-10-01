@@ -7,6 +7,7 @@ import { TeamsComponent } from "./teams/teams.component";
 import { PublicationsComponent } from "./publications/publications.component";
 import { MessagesComponent } from "./messages/messages.component";
 import { UserProfileComponent } from "./users/user-profile/user-profile.component";
+import { GameProfileComponent } from "./games/game-profile/game-profile.component";
 
 const routes: Routes = [
   { path: 'home', component: MainComponent },
@@ -15,8 +16,10 @@ const routes: Routes = [
   { path: 'users/:id', component: UserProfileComponent },
 
   { path: 'games', component: GamesComponent },
+  { path: 'games/:id', component: GameProfileComponent },
+
   { path: 'teams', component: TeamsComponent },
-  { path: 'publications', component: PublicationsComponent },
+  // { path: 'publications', component: PublicationsComponent },
   { path: 'messages', component: MessagesComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

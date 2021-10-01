@@ -1,8 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Game, User} from "../../core/shared/types";
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { Game } from "../../core/shared/types";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { AuthService } from "../../services/auth.service";
 import { GamesService } from "../../services/games.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-game-profile-modal',
@@ -17,8 +18,10 @@ export class GameProfileModalComponent implements OnInit {
   constructor(
       @Inject(MAT_DIALOG_DATA) public data: { gameId: number },
       @Inject('rootServerUrl') public rootServerUrl: string,
+      public dialogRef: MatDialogRef<GameProfileModalComponent>,
       private gamesService: GamesService,
-      public authService: AuthService
+      public authService: AuthService,
+      private router: Router
   ) {
     this.gameId = data.gameId;
   }
@@ -28,6 +31,11 @@ export class GameProfileModalComponent implements OnInit {
       .subscribe((game: Game) => {
         this.game = game;
       })
+  }
+
+  public openGamePage(): void {
+    this.dialogRef.close();
+    this.router.navigate(['games/' + this.gameId]);
   }
 
 }

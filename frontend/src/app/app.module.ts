@@ -25,6 +25,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { MainComponent } from './main/main.component';
 import { UsersComponent } from './users/users.component';
@@ -46,6 +47,7 @@ import { UserProfileComponent } from './users/user-profile/user-profile.componen
 import { rootServerUrl } from "./core/shared/constants";
 import { GameCreateModalComponent } from './games/game-create-modal/game-create-modal.component';
 import { GameProfileModalComponent } from './games/game-profile-modal/game-profile-modal.component';
+import { GameProfileComponent } from './games/game-profile/game-profile.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,8 @@ import { GameProfileModalComponent } from './games/game-profile-modal/game-profi
     GameTileComponent,
     UserProfileComponent,
     GameCreateModalComponent,
-    GameProfileModalComponent
+    GameProfileModalComponent,
+    GameProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +94,8 @@ import { GameProfileModalComponent } from './games/game-profile-modal/game-profi
     MatAutocompleteModule,
     MatIconModule,
     MatChipsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule
   ],
   providers: [
     UserService,

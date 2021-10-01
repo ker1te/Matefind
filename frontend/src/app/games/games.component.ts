@@ -13,7 +13,8 @@ import { GameProfileModalComponent } from "./game-profile-modal/game-profile-mod
 })
 export class GamesComponent implements OnInit {
 
-  games: Game[];
+  public games: Game[] = [];
+  public searchText: string = '';
 
   constructor(
     public authService: AuthService,
@@ -22,6 +23,19 @@ export class GamesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this._getGames();
+  }
+
+  public searchGamesByParams(): void {
+    if (!this.searchText) { return; }
+    this.gamesService.getGamesByName(this.searchText)
+      .subscribe((games: Game[]) => {
+        this.games = games;
+      })
+  }
+
+  public onClearSearch(): void {
+    this.searchText = '';
     this._getGames();
   }
 

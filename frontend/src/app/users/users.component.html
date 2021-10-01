@@ -4,7 +4,7 @@
           <mat-option *ngFor="let game of games" [value]="game.id">{{ game.name }}</mat-option>
       </mat-select>
       <input [(ngModel)]="searchText" type="text" placeholder="Find by nickname" matInput (keyup.enter)="searchUsersByParams()">
-      <button *ngIf="searchText || gamesFilterControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="onClearSearch()">
+      <button *ngIf="searchText || gamesFilterControl.value.length" matSuffix mat-icon-button aria-label="Clear" (click)="onClearSearch()">
         <mat-icon>close</mat-icon>
       </button>
       <button mat-button class="search-button" (click)="searchUsersByParams()">Find</button>

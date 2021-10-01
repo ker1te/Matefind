@@ -1,13 +1,13 @@
 <mat-list class="section-list">
   <a mat-button routerLink='/home' routerLinkActive='active'>Home</a>
   <!-- <a mat-button>News</a> -->
-  <a mat-button routerLink='/games'>Games</a>
   <a mat-button routerLink='/users' routerLinkActive='active'>Users</a>
-  <a mat-button routerLink='/publications'>Publications</a>
-  <a mat-button routerLink='/teams'>Teams</a>
+  <a mat-button routerLink='/games' routerLinkActive='active'>Games</a>
+  <!-- <a mat-button routerLink='/publications' routerLinkActive='active'>Publications</a> -->
+  <a mat-button routerLink='/teams' routerLinkActive='active'>Teams</a>
   <br>
   <div *ngIf="authService.currentUserValue">
-    <a mat-button routerLink='/messages'>Messages</a>
-    <a mat-button routerLink='/friends'>Friends</a>
+    <a mat-button routerLink='/messages' routerLinkActive='active'>Messages</a>
+    <a mat-button routerLink='/friends' routerLinkActive='active'>Friends</a>
   </div>
 </mat-list>

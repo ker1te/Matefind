@@ -1,0 +1,22 @@
+<div class="container">
+    <div *ngIf="game" class="game-profile">
+        <div class="game-profile-header">
+            <img src="{{rootServerUrl + game.avatar}}" alt={{game.name}}>
+            <div class="game-info">
+                <h1>{{ game.name }}</h1>
+                <p class="game-description">{{ game.description }}</p>
+            </div>
+        </div>
+        <div class="game-profile-body">
+            <mat-tab-group>
+                <mat-tab label="News">
+
+                </mat-tab>
+                <mat-tab label="Gamers">
+
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+    <mat-spinner *ngIf="!game" class="spinner" diameter="70"></mat-spinner>
+</div>
