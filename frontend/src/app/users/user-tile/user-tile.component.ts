@@ -1,6 +1,8 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import {Component, HostListener, Inject, Input, OnInit} from '@angular/core';
 import { Game, User } from 'src/app/core/shared/types';
 import { UserService } from "../../services/user.service";
+import { UserProfileModalComponent } from "../user-profile-modal/user-profile-modal.component";
+import { ModalService } from "../../services/modal.service";
 
 @Component({
   selector: 'app-user-tile',
@@ -8,6 +10,10 @@ import { UserService } from "../../services/user.service";
   styleUrls: ['./user-tile.component.scss']
 })
 export class UserTileComponent implements OnInit {
+  @HostListener('click', ['$event'])
+  private onClick(){
+      this.modalService.openDialog(UserProfileModalComponent, { userId: this.user.id });
+  }
 
   @Input('user') user: User;
   public userGames: string = '';
@@ -15,7 +21,8 @@ export class UserTileComponent implements OnInit {
 
   constructor(
     @Inject('rootServerUrl') public rootServerUrl: string,
-    private userService: UserService
+    private userService: UserService,
+    private modalService: ModalService
   ) { }
 
   ngOnInit(): void {

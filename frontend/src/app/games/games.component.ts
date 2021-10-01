@@ -5,6 +5,7 @@ import { GameCreateModalComponent } from "./game-create-modal/game-create-modal.
 import { AuthService } from "../services/auth.service";
 import { ModalService } from "../services/modal.service";
 import { GameProfileModalComponent } from "./game-profile-modal/game-profile-modal.component";
+import { finalize } from "rxjs/operators";
 
 @Component({
   selector: 'app-games',
@@ -15,6 +16,7 @@ export class GamesComponent implements OnInit {
 
   public games: Game[] = [];
   public searchText: string = '';
+  public isLoading: boolean = true;
 
   constructor(
     public authService: AuthService,
@@ -27,8 +29,10 @@ export class GamesComponent implements OnInit {
   }
 
   public searchGamesByParams(): void {
+    this.isLoading = true;
     if (!this.searchText) { return; }
     this.gamesService.getGamesByName(this.searchText)
+      .pipe(finalize(() => this.isLoading = false))
       .subscribe((games: Game[]) => {
         this.games = games;
       })
@@ -53,7 +57,9 @@ export class GamesComponent implements OnInit {
   }
 
   private _getGames(): void {
+    this.isLoading = true;
     this.gamesService.getGames()
+      .pipe(finalize(() => this.isLoading = false))
       .subscribe(games => this.games = games);
   }
 

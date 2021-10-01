@@ -26,7 +26,9 @@ export class UsersComponent implements OnInit {
     private userService: UserService,
     private modalService: ModalService,
     private gameService: GamesService
-  ) { }
+  ) {
+    this.gamesFilterControl.setValue([]);
+  }
 
   ngOnInit(): void {
     this._getUserList();
@@ -38,7 +40,7 @@ export class UsersComponent implements OnInit {
   }
 
   private openUserProfileDialog(data: any): void {
-    this.modalService.openDialog(UserProfileModalComponent, data);
+    // this.modalService.openDialog(UserProfileModalComponent, data);
   }
 
   public searchUsersByParams(): void {
@@ -64,6 +66,7 @@ export class UsersComponent implements OnInit {
   }
 
   private _getUserList(): void {
+    this.listIsLoading = true;
     this.userService.getUsers()
     .pipe(
         finalize(() => this.listIsLoading = false)
@@ -75,7 +78,6 @@ export class UsersComponent implements OnInit {
     this.gameService.getGames()
     .subscribe((games: Game[]) => {
       this.games = games;
-      this.gamesFilterControl.setValue([]);
     })
   }
 }

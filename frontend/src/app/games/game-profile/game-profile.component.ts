@@ -13,7 +13,7 @@ import { ActivatedRoute } from "@angular/router";
 export class GameProfileComponent implements OnInit {
 
   public game: Game;
-  private gameId: number;
+  public gameId: number;
 
   constructor(
       private authService: AuthService,

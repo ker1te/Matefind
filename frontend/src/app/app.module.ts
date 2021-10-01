@@ -48,6 +48,7 @@ import { rootServerUrl } from "./core/shared/constants";
 import { GameCreateModalComponent } from './games/game-create-modal/game-create-modal.component';
 import { GameProfileModalComponent } from './games/game-profile-modal/game-profile-modal.component';
 import { GameProfileComponent } from './games/game-profile/game-profile.component';
+import { GameUsersListComponent } from './games/game-profile/game-users-list/game-users-list.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { GameProfileComponent } from './games/game-profile/game-profile.componen
     UserProfileComponent,
     GameCreateModalComponent,
     GameProfileModalComponent,
-    GameProfileComponent
+    GameProfileComponent,
+    GameUsersListComponent
   ],
   imports: [
     BrowserModule,
