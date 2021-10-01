@@ -30,7 +30,8 @@ export const UserModel = sequelize.define('User', {
         type: DataTypes.STRING
     }
 }, {
-    tableName: 'Users'
+    tableName: 'Users',
+    defaultScope: { attributes: { exclude: ['email', 'passwordHash'] } }
 });
 
 export const UserGamesModel = sequelize.define('UserGames', {

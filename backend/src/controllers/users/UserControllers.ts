@@ -1,6 +1,7 @@
 import { BodyParams, Controller, Delete, Get, PathParams, Post, Put } from "@tsed/common";
 import { UserGamesModel, UserInterface, UserModel } from "./User";
 import { GameModel } from "../games/Game";
+import { sequelize } from "../../Server";
 
 
 @Controller("/users")
@@ -34,8 +35,7 @@ export class UsersController {
       @BodyParams('data') data: UserInterface
   ) {
     const updatedUser = await UserModel.update({ ...data }, { where: { id } });
-    const user = await UserModel.findOne({ where: { id: updatedUser[0] } })
-    return user;
+    return updatedUser;
   }
 
   @Post("/")
@@ -64,6 +64,20 @@ export class UsersController {
     const { name, passwordHash } = userData;
     const user = await UserModel.findOne({ where: { name, passwordHash } });
     return user;
+  }
+
+  @Post("/findByParams")
+  async findByParams(
+      @BodyParams('params') params: any
+  ){
+    const { name, games } = params;
+    const nameQueryPart: string = ((name) ? `"Users"."name" = \'${name}\'` : '');
+    const query = 'SELECT "Users"."id", "Users"."name", "Users"."avatar", "Users"."isAdmin" FROM "Users" LEFT JOIN "UserGames" ON "Users"."id" = "UserGames"."userId" WHERE '
+        + nameQueryPart
+        + (nameQueryPart && games.length ? ' AND ' : '')
+        + games.map((gameId: number) => `"UserGames"."gameId" = ${gameId}`).join(' AND ')
+    const users = await sequelize.query(query, { raw: true });
+    return users[0];
   }
 
   @Delete("/:userId/games/:gameId")

@@ -52,9 +52,12 @@ export class UserProfileComponent implements OnInit {
 
   public onSaveDescriptionClick(): void {
     this.userService.updateUserData(this.userId, { description: this.descriptionControl.value })
-        .subscribe((user: User) => {
-          this.user = user;
-          this.descriptionControl.setValue(user.description)
+        .subscribe((userUpdated: number) => {
+          if (userUpdated) {
+            this.authService.description = this.descriptionControl.value;
+            this.user.description = this.descriptionControl.value;
+            this.descriptionControl.setValue(this.user.description);
+          }
         })
   }
 

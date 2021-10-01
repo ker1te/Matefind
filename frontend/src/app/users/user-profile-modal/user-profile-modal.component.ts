@@ -48,6 +48,10 @@ export class UserProfileModalComponent implements OnInit {
   }
 
   public sendMessageToUser(): void {
-    console.log('sendMessageToUser ' + this.userId)
+    console.log('sendMessageToUser ' + this.userId);
+  }
+
+  public makeFriends(): void {
+    console.log('makeFriends' + this.userId);
   }
 }

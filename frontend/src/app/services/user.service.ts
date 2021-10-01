@@ -21,8 +21,12 @@ export class UserService {
     return this.http.get<User>(serverUrl + 'users/' + id);
   }
 
-  updateUserData(userId: number, data: any): Observable<User> {
-    return this.http.put<User>(serverUrl + 'users/' + userId, { data });
+  getUsersByParams(params: any): Observable<User[]> {
+    return this.http.post<User[]>(serverUrl + 'users/findByParams/', { params })
+  }
+
+  updateUserData(userId: number, data: any): Observable<number> {
+    return this.http.put<number>(serverUrl + 'users/' + userId, { data });
   }
 
   getUserGames(userId: number): Observable<Game[]> {

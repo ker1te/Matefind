@@ -37,13 +37,15 @@
         display: flex;
         flex-direction: column;
         .page-button,
-        .message-button {
+        .message-button,
+        .friend-button {
           font-size: 23px;
           color: #fff;
           margin-bottom: 5px;
         }
         .page-button { background: #FCA311; }
         .message-button { background: #07049f;  }
+        .friend-button { background: #59d759; }
       }
     }
 

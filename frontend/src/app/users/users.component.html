@@ -1,4 +1,16 @@
 <div class="container">
-  <app-user-tile *ngFor="let user of users" [user]="user" (click)="onUserClick(user.id)"></app-user-tile>
-  <mat-spinner *ngIf="!users" class="spinner" diameter="70"></mat-spinner>
+  <div class="search-container">
+      <mat-select [formControl]="gamesFilterControl" multiple placeholder="Games">
+          <mat-option *ngFor="let game of games" [value]="game.id">{{ game.name }}</mat-option>
+      </mat-select>
+      <input [(ngModel)]="searchText" type="text" placeholder="Find by nickname" matInput (keyup.enter)="searchUsersByParams()">
+      <button *ngIf="searchText || gamesFilterControl.value" matSuffix mat-icon-button aria-label="Clear" (click)="onClearSearch()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <button mat-button class="search-button" (click)="searchUsersByParams()">Find</button>
+  </div>
+  <div class="user-list" *ngIf="!listIsLoading">
+    <app-user-tile *ngFor="let user of users" [user]="user" (click)="onUserClick(user.id)"></app-user-tile>
+  </div>
+  <mat-spinner *ngIf="listIsLoading" class="spinner" diameter="70"></mat-spinner>
 </div>

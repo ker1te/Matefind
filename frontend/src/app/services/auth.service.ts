@@ -22,6 +22,10 @@ export class AuthService {
     return this.currentUserSubject;
   }
 
+  public set description(desc: string) {
+    this.currentUserSubject.description = desc;
+  }
+
   public signin(userData: any): Observable<User> {
     const body = { data: { ...userData } }
     return this.http.post<User>(serverUrl + 'users/signIn', body)

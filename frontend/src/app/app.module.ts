@@ -24,6 +24,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatSelectModule } from '@angular/material/select';
 
 import { MainComponent } from './main/main.component';
 import { UsersComponent } from './users/users.component';
@@ -89,7 +90,8 @@ import { GameProfileModalComponent } from './games/game-profile-modal/game-profi
     MatDividerModule,
     MatAutocompleteModule,
     MatIconModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSelectModule
   ],
   providers: [
     UserService,
