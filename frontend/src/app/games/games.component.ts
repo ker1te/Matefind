@@ -44,7 +44,7 @@ export class GamesComponent implements OnInit {
   }
 
   public onGameClick(gameId: number) {
-    this.modalService.openDialog(GameProfileModalComponent, { gameId });
+    // this.modalService.openDialog(GameProfileModalComponent, { gameId });
   }
 
   public onCreateGameClick(): void {

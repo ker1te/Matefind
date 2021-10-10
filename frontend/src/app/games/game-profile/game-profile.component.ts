@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Game } from "../../core/shared/types";
 import { AuthService } from "../../services/auth.service";
 import { UserService } from "../../services/user.service";

@@ -1,4 +1,4 @@
-import {Component, HostListener, Inject, Input, OnInit} from '@angular/core';
+import { Component, HostListener, Inject, Input, OnInit } from '@angular/core';
 import { Game, User } from 'src/app/core/shared/types';
 import { UserService } from "../../services/user.service";
 import { UserProfileModalComponent } from "../user-profile-modal/user-profile-modal.component";

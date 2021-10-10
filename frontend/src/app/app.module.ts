@@ -49,6 +49,9 @@ import { GameCreateModalComponent } from './games/game-create-modal/game-create-
 import { GameProfileModalComponent } from './games/game-profile-modal/game-profile-modal.component';
 import { GameProfileComponent } from './games/game-profile/game-profile.component';
 import { GameUsersListComponent } from './games/game-profile/game-users-list/game-users-list.component';
+import { MfTileComponent } from './core/components/mf-tile/mf-tile.component';
+import { TeamProfileModalComponent } from './teams/team-profile-modal/team-profile-modal.component';
+import { TeamProfileComponent } from './teams/team-profile/team-profile.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +75,10 @@ import { GameUsersListComponent } from './games/game-profile/game-users-list/gam
     GameCreateModalComponent,
     GameProfileModalComponent,
     GameProfileComponent,
-    GameUsersListComponent
+    GameUsersListComponent,
+    MfTileComponent,
+    TeamProfileModalComponent,
+    TeamProfileComponent
   ],
   imports: [
     BrowserModule,

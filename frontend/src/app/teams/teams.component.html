@@ -1,1 +1,18 @@
-<p>teams works!</p>
+<div class="container">
+    <div class="search-container">
+        <mat-select [formControl]="gamesFilterControl" multiple placeholder="Games">
+            <mat-option *ngFor="let game of games" [value]="game.id">{{ game.name }}</mat-option>
+        </mat-select>
+        <input [(ngModel)]="searchText" type="text" placeholder="Find by name" matInput (keyup.enter)="searchTeamsByParams()">
+        <button *ngIf="searchText || gamesFilterControl.value.length" matSuffix mat-icon-button aria-label="Clear" (click)="onClearSearch()">
+            <mat-icon>close</mat-icon>
+        </button>
+        <button mat-button class="search-button" (click)="searchTeamsByParams()">Find</button>
+    </div>
+    <div class="user-list" *ngIf="!listIsLoading">
+        <app-mf-tile *ngFor="let team of teams"
+          [data]="{ image: team.avatar, title: team.name, subTitle: team.description, onTileClick: onTeamTileClick.bind(this, [ team.id ]) }"
+        ></app-mf-tile>
+    </div>
+    <mat-spinner *ngIf="listIsLoading" class="spinner" diameter="70"></mat-spinner>
+</div>

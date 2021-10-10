@@ -20,6 +20,13 @@ export interface Game {
   avatar: string;
 }
 
+export interface Team {
+  id: number;
+  name: string;
+  description: string;
+  avatar: string;
+}
+
 export interface News {
   id: number;
   title: string;

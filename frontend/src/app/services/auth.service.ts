@@ -42,4 +42,8 @@ export class AuthService {
     return this.currentUserSubject && this.currentUserSubject.isAdmin;
   }
 
+  public isAuth(): boolean {
+    return !!this.currentUserSubject;
+  }
+
 }

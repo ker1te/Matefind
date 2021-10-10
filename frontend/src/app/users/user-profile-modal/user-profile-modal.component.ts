@@ -16,6 +16,8 @@ export class UserProfileModalComponent implements OnInit {
   public user: User;
   public userGames: Game[];
 
+  public isItMe: boolean = true;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { userId: number },
     @Inject('rootServerUrl') public rootServerUrl: string,
@@ -25,6 +27,7 @@ export class UserProfileModalComponent implements OnInit {
     private router: Router
   ) {
     this.userId = data.userId;
+    this.isItMe = this.authService.currentUserValue && this.authService.currentUserValue.id === this.userId;
   }
 
   ngOnInit(): void {

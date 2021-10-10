@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Game, User } from '../core/shared/types';
-import { UserProfileModalComponent } from "./user-profile-modal/user-profile-modal.component";
 import { ModalService } from "../services/modal.service";
 import { finalize } from "rxjs/operators";
 import { FormControl } from "@angular/forms";
@@ -33,14 +32,6 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this._getUserList();
     this._getGameList();
-  }
-
-  onUserClick(userId: number) {
-    this.openUserProfileDialog({ userId })
-  }
-
-  private openUserProfileDialog(data: any): void {
-    // this.modalService.openDialog(UserProfileModalComponent, data);
   }
 
   public searchUsersByParams(): void {

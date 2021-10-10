@@ -1,0 +1,22 @@
+<div class="container">
+    <div *ngIf="team" class="game-profile">
+        <div class="game-profile-header">
+            <img src="{{rootServerUrl + team.avatar}}" alt={{team.name}}>
+            <div class="game-info">
+                <h1>{{ team.name }}</h1>
+                <p class="game-description">{{ team.description }}</p>
+            </div>
+        </div>
+        <div class="game-profile-body">
+            <mat-tab-group>
+                <mat-tab label="News">
+
+                </mat-tab>
+                <mat-tab label="Gamers">
+                    <app-user-tile *ngFor="let user of teamUsers" [user]="user"></app-user-tile>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+    <mat-spinner *ngIf="!team" class="spinner" diameter="70"></mat-spinner>
+</div>

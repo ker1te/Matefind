@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="profile-block" *ngIf="team">
+        <div class="profile-header">
+            <img src="{{rootServerUrl + team.avatar}}" alt={{team.name}}>
+            <div class="game-info">
+                <h1>{{ team.name }}</h1>
+            </div>
+            <span class="flex-spacer"></span>
+            <div class="action-buttons-block">
+                <button mat-button class="page-button" (click)="onOpenPage()">Open page</button>
+                <button *ngIf="authService.currentUserValue" mat-button class="join-button" (click)="onJoin()" disabled="{{isJoined}}">Join</button>
+            </div>
+        </div>
+        <div class="profile-body">
+            <div class="desc-block">
+                <p class="desc-text">{{ team.description }}</p>
+            </div>
+        </div>
+    </div>
+    <mat-spinner *ngIf="!team" class="spinner" diameter="70"></mat-spinner>
+</div>

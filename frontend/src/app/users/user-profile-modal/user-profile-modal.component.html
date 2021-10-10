@@ -16,8 +16,8 @@
       <span class="flex-spacer"></span>
       <div class="action-buttons-block">
         <button mat-button class="page-button" (click)="openUserPage()">Open page</button>
-        <button *ngIf="authService.currentUserValue" mat-button class="message-button" (click)="sendMessageToUser()">Send message</button>
-        <button *ngIf="authService.currentUserValue" mat-button class="friend-button" (click)="makeFriends()">Make friends</button>
+        <button *ngIf="authService.currentUserValue && !isItMe" mat-button class="message-button" (click)="sendMessageToUser()">Send message</button>
+        <button *ngIf="authService.currentUserValue && !isItMe" mat-button class="friend-button" (click)="makeFriends()">Make friends</button>
       </div>
     </div>
     <div class="profile-body">

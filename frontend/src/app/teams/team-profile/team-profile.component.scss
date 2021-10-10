@@ -1,0 +1,35 @@
+.container {
+  .game-profile {
+    .game-profile-header {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 10px;
+      img {
+        border-radius: 100%;
+        height: 200px;
+        margin-right: 15px;
+      }
+      .game-info {
+        display: flex;
+        flex-direction: column;
+        margin-left: 30px;
+
+        h1 {
+          margin: 0;
+          font-size: 40px;
+        }
+        p {
+          margin: 5px 0;
+          font-size: 23px;
+        }
+      }
+    }
+
+    .game-profile-body {
+    }
+  }
+
+  mat-spinner {
+    margin: 100px auto;
+  }
+}

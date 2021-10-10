@@ -10,7 +10,7 @@
       <button mat-button class="search-button" (click)="searchUsersByParams()">Find</button>
   </div>
   <div class="user-list" *ngIf="!listIsLoading">
-    <app-user-tile *ngFor="let user of users" [user]="user" (click)="onUserClick(user.id)"></app-user-tile>
+    <app-user-tile *ngFor="let user of users" [user]="user"></app-user-tile>
   </div>
   <mat-spinner *ngIf="listIsLoading" class="spinner" diameter="70"></mat-spinner>
 </div>
